@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": null,
+  "source": "IMF WEO",
+  "year": null,
+  "coverage": {
+    "total": 8,
+    "verified": 0,
+    "unavailable": 8
+  },
+  "areas": [],
+  "errors": [],
+  "fetch_errors": []
+}

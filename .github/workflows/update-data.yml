@@ -20,11 +20,13 @@ jobs:
         run: python scripts/collect_rates.py
       - name: Collect COT positioning
         run: python scripts/collect_cot.py
+      - name: Collect inflation and growth
+        run: python scripts/collect_macro.py
       - name: Commit changes
         run: |
           git config user.name "fonda-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/official-rates.json data/cot.json
+          git add data/official-rates.json data/cot.json data/macro.json
           if git diff --cached --quiet; then
             echo "No changes"
           else
