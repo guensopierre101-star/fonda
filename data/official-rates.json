@@ -1,23 +1,82 @@
 {
   "schema_version": 1,
-  "generated_at_utc": null,
-  "note": "Not fetched yet. Run the GitHub Actions workflow to populate this file with official API observations. No sample market values are included.",
+  "generated_at_utc": "2026-10-11T15:23:16.969893+00:00",
+  "note": "Coverage lists all eight central banks. Only successfully parsed official machine-readable observations appear as verified rates. Unavailable adapters are not replaced by estimates. Do not derive trading signals from partial coverage.",
   "coverage": {
-    "verified": 0,
-    "unavailable": 0,
-    "planned": [
-      "EUR",
-      "USD",
-      "GBP",
-      "JPY",
-      "CAD",
-      "AUD",
-      "NZD",
-      "CHF",
-      "XAU/USD",
-      "CFTC COT"
-    ]
+    "total_currencies": 8,
+    "verified": 2,
+    "unavailable": 6
   },
-  "rates": [],
-  "source_errors": []
+  "rates": [
+    {
+      "currency": "USD",
+      "central_bank": "Federal Reserve",
+      "indicator": "Federal funds target range upper bound",
+      "value_percent": 4.0,
+      "observation_date": "2026-10-11",
+      "source_url": "https://www.federalreserve.gov/monetarypolicy.htm",
+      "api_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARU",
+      "status": "verified"
+    },
+    {
+      "currency": "EUR",
+      "central_bank": "European Central Bank",
+      "indicator": "Main refinancing operations rate",
+      "value_percent": 2.65,
+      "observation_date": "2026-10-11",
+      "source_url": "https://www.ecb.europa.eu/press/govcdec/mopo/html/index.en.html",
+      "api_url": "https://data-api.ecb.europa.eu/service/data/FM/D.U2.EUR.4F.KR.MRR_FR.LEV?format=csvdata&lastNObservations=1",
+      "status": "verified"
+    }
+  ],
+  "source_errors": [
+    {
+      "currency": "GBP",
+      "central_bank": "Bank of England",
+      "source_url": "https://www.bankofengland.co.uk/monetary-policy",
+      "official_data_url": "https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp",
+      "status": "unavailable",
+      "error": "Official source identified, but a reliable machine-readable adapter has not yet been validated."
+    },
+    {
+      "currency": "JPY",
+      "central_bank": "Bank of Japan",
+      "source_url": "https://www.boj.or.jp/en/mopo/",
+      "official_data_url": "https://www.boj.or.jp/en/mopo/",
+      "status": "unavailable",
+      "error": "Official source identified, but a reliable machine-readable adapter has not yet been validated."
+    },
+    {
+      "currency": "CAD",
+      "central_bank": "Bank of Canada",
+      "source_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/",
+      "official_data_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/",
+      "status": "unavailable",
+      "error": "Official source identified, but a reliable machine-readable adapter has not yet been validated."
+    },
+    {
+      "currency": "AUD",
+      "central_bank": "Reserve Bank of Australia",
+      "source_url": "https://www.rba.gov.au/monetary-policy/",
+      "official_data_url": "https://www.rba.gov.au/statistics/cash-rate/",
+      "status": "unavailable",
+      "error": "Official source identified, but a reliable machine-readable adapter has not yet been validated."
+    },
+    {
+      "currency": "NZD",
+      "central_bank": "Reserve Bank of New Zealand",
+      "source_url": "https://www.rbnz.govt.nz/monetary-policy",
+      "official_data_url": "https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate",
+      "status": "unavailable",
+      "error": "Official source identified, but a reliable machine-readable adapter has not yet been validated."
+    },
+    {
+      "currency": "CHF",
+      "central_bank": "Swiss National Bank",
+      "source_url": "https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy",
+      "official_data_url": "https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy",
+      "status": "unavailable",
+      "error": "Official source identified, but a reliable machine-readable adapter has not yet been validated."
+    }
+  ]
 }
