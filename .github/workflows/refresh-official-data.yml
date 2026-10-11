@@ -6,7 +6,7 @@ on:
   push:
     branches: [main, official-data-pipeline]
     paths:
-      - "scripts/fetch_official_data.py"
+      - "scripts/fetch_all_official_rates.py"
       - ".github/workflows/refresh-official-data.yml"
 permissions:
   contents: write
@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Fetch official observations
-        run: python scripts/fetch_official_data.py
+        run: python scripts/fetch_all_official_rates.py
       - name: Commit data snapshot when changed
         run: |
           git config user.name "github-actions[bot]"
