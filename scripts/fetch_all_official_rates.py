@@ -18,10 +18,12 @@ def collect(s):
     req = urllib.request.Request(s["url"], headers={"User-Agent":"FundamentalFXDesk/1.0", "Accept":"text/csv, application/json, text/html"})
     with urllib.request.urlopen(req, timeout=25) as response:
         raw = response.read().decode("utf-8-sig", errors="replace")
+    if s["kind"] == "unavailable":
+        raise RuntimeError("No validated adapter for this official source.")
     if s["kind"] == "html":
         import re
         text = re.sub(r"<[^>]+>", " ", raw)
-        text = re.sub(r"\\s+", " ", text)
+        text = re.sub(r"\s+", " ", text)
         match = re.search(s["pattern"], text, re.I)
         if not match:
             raise ValueError("Could not validate the official rate on the source page")
@@ -44,14 +46,14 @@ def collect(s):
         raise ValueError("No valid dated observation in official JSON")
     if s.get("snb"):
         rows = list(csv.reader(io.StringIO(raw)))
-        # The SNB cube includes the SNB policy-rate series; require an identifiable row and dated numeric value.
+        # Require a row explicitly identified as the policy-rate series and a real date; never guess a numeric cell.
         for row in reversed(rows):
             joined = " ".join(row)
-            if "LZ" in joined and any(cell.strip() for cell in row):
+            if ("policy rate" in joined.lower() or "policy-rate" in joined.lower()) and len(row) >= 2:
                 for cell in reversed(row):
                     try:
                         number = float(cell.replace(",", "."))
-                        if -2 <= number <= 30:
+                        if -2 <= number <= 30 and row[0] and any(ch.isdigit() for ch in row[0]):
                             return {"currency":s["currency"],"central_bank":s["bank"],"indicator":s["indicator"],"value_percent":number,"observation_date":row[0],"source_url":s["source"],"api_url":s["url"],"status":"verified"}
                     except ValueError:
                         continue
