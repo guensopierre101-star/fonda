@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-11T17:19:00Z",
+  "generated_at_utc": "2026-10-11T17:24:25Z",
   "note": "Only validated observations are listed. Missing currencies appear in source_errors.",
   "coverage": {
     "total_currencies": 8,

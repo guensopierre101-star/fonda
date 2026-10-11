@@ -1,13 +1,133 @@
 {
   "schema_version": 1,
-  "generated_at_utc": null,
-  "source": "CFTC Commitments of Traders",
-  "report_date": null,
+  "generated_at_utc": "2026-10-11T17:24:27Z",
+  "source": "CFTC Commitments of Traders, futures only (TFF for currencies, Disaggregated for gold)",
+  "report_date": "2026-10-06",
   "coverage": {
     "total": 9,
-    "verified": 0,
-    "unavailable": 9
+    "verified": 8,
+    "unavailable": 1
   },
-  "markets": [],
-  "errors": []
+  "markets": [
+    {
+      "currency": "EUR",
+      "market": "Euro FX (CME)",
+      "group": "Leveraged Funds",
+      "long": 135367,
+      "short": 179628,
+      "net": -44261,
+      "net_change": -4996,
+      "open_interest": 870291,
+      "nonreportable_net": 27308,
+      "report_date": "2026-10-06",
+      "contract_name": "EURO FX",
+      "previous_report_date": "2026-09-29"
+    },
+    {
+      "currency": "GBP",
+      "market": "British Pound (CME)",
+      "group": "Leveraged Funds",
+      "long": 57368,
+      "short": 44936,
+      "net": 12432,
+      "net_change": 7826,
+      "open_interest": 265890,
+      "nonreportable_net": -14256,
+      "report_date": "2026-10-06",
+      "contract_name": "BRITISH POUND",
+      "previous_report_date": "2026-09-29"
+    },
+    {
+      "currency": "JPY",
+      "market": "Japanese Yen (CME)",
+      "group": "Leveraged Funds",
+      "long": 66123,
+      "short": 91166,
+      "net": -25043,
+      "net_change": -10882,
+      "open_interest": 368138,
+      "nonreportable_net": -576,
+      "report_date": "2026-10-06",
+      "contract_name": "JAPANESE YEN",
+      "previous_report_date": "2026-09-29"
+    },
+    {
+      "currency": "CAD",
+      "market": "Canadian Dollar (CME)",
+      "group": "Leveraged Funds",
+      "long": 31682,
+      "short": 111307,
+      "net": -79625,
+      "net_change": -9981,
+      "open_interest": 371048,
+      "nonreportable_net": -13339,
+      "report_date": "2026-10-06",
+      "contract_name": "CANADIAN DOLLAR",
+      "previous_report_date": "2026-09-29"
+    },
+    {
+      "currency": "AUD",
+      "market": "Australian Dollar (CME)",
+      "group": "Leveraged Funds",
+      "long": 86777,
+      "short": 32644,
+      "net": 54133,
+      "net_change": -6459,
+      "open_interest": 328682,
+      "nonreportable_net": 13496,
+      "report_date": "2026-10-06",
+      "contract_name": "AUSTRALIAN DOLLAR",
+      "previous_report_date": "2026-09-29"
+    },
+    {
+      "currency": "NZD",
+      "market": "New Zealand Dollar (CME)",
+      "group": "Leveraged Funds",
+      "long": 27439,
+      "short": 28226,
+      "net": -787,
+      "net_change": 279,
+      "open_interest": 129883,
+      "nonreportable_net": -2034,
+      "report_date": "2026-10-06",
+      "contract_name": "NZ DOLLAR",
+      "previous_report_date": "2026-09-29"
+    },
+    {
+      "currency": "CHF",
+      "market": "Swiss Franc (CME)",
+      "group": "Leveraged Funds",
+      "long": 12900,
+      "short": 24250,
+      "net": -11350,
+      "net_change": 2645,
+      "open_interest": 137185,
+      "nonreportable_net": -13546,
+      "report_date": "2026-10-06",
+      "contract_name": "SWISS FRANC",
+      "previous_report_date": "2026-09-29"
+    },
+    {
+      "currency": "XAU",
+      "market": "Gold (COMEX)",
+      "group": "Managed Money",
+      "long": 127101,
+      "short": 16114,
+      "net": 110987,
+      "net_change": -9331,
+      "open_interest": 396109,
+      "nonreportable_net": 34192,
+      "report_date": "2026-10-06",
+      "contract_name": "GOLD",
+      "previous_report_date": "2026-09-29"
+    }
+  ],
+  "errors": [
+    {
+      "currency": "USD",
+      "market": "USD Index (ICE)",
+      "status": "unavailable",
+      "error": "ValueError: unexpected contract 'USD INDEX' for code 098662"
+    }
+  ]
 }
