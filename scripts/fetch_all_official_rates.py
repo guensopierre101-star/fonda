@@ -6,17 +6,58 @@ from datetime import datetime, timezone
 SOURCES = [
  {"currency":"USD","bank":"Federal Reserve","indicator":"Federal funds target range upper bound","kind":"csv","url":"https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARU","source":"https://www.federalreserve.gov/monetarypolicy.htm","date":"observation_date","value":"DFEDTARU"},
  {"currency":"EUR","bank":"European Central Bank","indicator":"Main refinancing operations rate","kind":"csv","url":"https://data-api.ecb.europa.eu/service/data/FM/D.U2.EUR.4F.KR.MRR_FR.LEV?format=csvdata&lastNObservations=1","source":"https://www.ecb.europa.eu/press/govcdec/mopo/html/index.en.html","date":"TIME_PERIOD","value":"OBS_VALUE"},
- {"currency":"GBP","bank":"Bank of England","indicator":"Official Bank Rate","kind":"unavailable","url":"https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp","source":"https://www.bankofengland.co.uk/monetary-policy"},
+ {"currency":"GBP","bank":"Bank of England","indicator":"Official Bank Rate","kind":"html","url":"https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp","source":"https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp","pattern":r"Current official Bank Rate\s*([0-9]+(?:\.[0-9]+)?)\s*%","date_pattern":r"(\d{2} [A-Z][a-z]{2} \d{2})\s*\|\s*[0-9]+(?:\.[0-9]+)?"},
  {"currency":"JPY","bank":"Bank of Japan","indicator":"Policy interest rate","kind":"unavailable","url":"https://www.boj.or.jp/en/mopo/","source":"https://www.boj.or.jp/en/mopo/"},
- {"currency":"CAD","bank":"Bank of Canada","indicator":"Target for the overnight rate","kind":"unavailable","url":"https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/","source":"https://www.bankofcanada.ca/core-functions/monetary-policy/"},
- {"currency":"AUD","bank":"Reserve Bank of Australia","indicator":"Cash rate target","kind":"unavailable","url":"https://www.rba.gov.au/statistics/cash-rate/","source":"https://www.rba.gov.au/monetary-policy/"},
- {"currency":"NZD","bank":"Reserve Bank of New Zealand","indicator":"Official Cash Rate","kind":"unavailable","url":"https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate","source":"https://www.rbnz.govt.nz/monetary-policy"},
- {"currency":"CHF","bank":"Swiss National Bank","indicator":"SNB policy rate","kind":"unavailable","url":"https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy","source":"https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy"},
+ {"currency":"CAD","bank":"Bank of Canada","indicator":"Target for the overnight rate","kind":"csv","url":"https://www.bankofcanada.ca/valet/observations/V39079/json?recent=1","source":"https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/","json_series":"V39079"},
+ {"currency":"AUD","bank":"Reserve Bank of Australia","indicator":"Cash rate target","kind":"html","url":"https://www.rba.gov.au/statistics/cash-rate/","source":"https://www.rba.gov.au/statistics/cash-rate/","pattern":r"Cash rate target\s*%?\s*</[^>]+>\s*<[^>]+>\s*([0-9]+(?:\.[0-9]+)?)","date_pattern":r"(\d{1,2}\s+[A-Z][a-z]{2}\s+\d{4})"},
+ {"currency":"NZD","bank":"Reserve Bank of New Zealand","indicator":"Official Cash Rate","kind":"html","url":"https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate","source":"https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate","pattern":r"Official Cash Rate\s*([0-9]+(?:\.[0-9]+)?)\s*%","date_pattern":r"Updated:?\s*([0-9]{1,2}\s+[A-Z][a-z]+\s+\d{4})"},
+ {"currency":"CHF","bank":"Swiss National Bank","indicator":"SNB policy rate","kind":"csv","url":"https://data.snb.ch/api/cube/snboffzisa/data/csv/en","source":"https://data.snb.ch/en/topics/snb/cube/snboffzisa","snb":true},
 ]
 
 def collect(s):
+    req = urllib.request.Request(s["url"], headers={"User-Agent":"FundamentalFXDesk/1.0", "Accept":"text/csv, application/json, text/html"})
+    with urllib.request.urlopen(req, timeout=25) as response:
+        raw = response.read().decode("utf-8-sig", errors="replace")
+    if s["kind"] == "html":
+        import re
+        text = re.sub(r"<[^>]+>", " ", raw)
+        text = re.sub(r"\\s+", " ", text)
+        match = re.search(s["pattern"], text, re.I)
+        if not match:
+            raise ValueError("Could not validate the official rate on the source page")
+        number = float(match.group(1))
+        date_match = re.search(s["date_pattern"], text, re.I)
+        if not date_match:
+            raise ValueError("Could not validate an observation date on the source page")
+        date = date_match.group(1)
+        return {"currency":s["currency"],"central_bank":s["bank"],"indicator":s["indicator"],"value_percent":number,"observation_date":date,"source_url":s["source"],"api_url":s["url"],"status":"verified"}
+    if s.get("json_series"):
+        payload = json.loads(raw)
+        observations = payload.get("observations", [])
+        for obs in reversed(observations):
+            value = obs.get(s["json_series"], {}).get("v")
+            date = obs.get("d")
+            if value is not None and date:
+                number = float(value)
+                if -2 <= number <= 30:
+                    return {"currency":s["currency"],"central_bank":s["bank"],"indicator":s["indicator"],"value_percent":number,"observation_date":date,"source_url":s["source"],"api_url":s["url"],"status":"verified"}
+        raise ValueError("No valid dated observation in official JSON")
+    if s.get("snb"):
+        rows = list(csv.reader(io.StringIO(raw)))
+        # The SNB cube includes the SNB policy-rate series; require an identifiable row and dated numeric value.
+        for row in reversed(rows):
+            joined = " ".join(row)
+            if "LZ" in joined and any(cell.strip() for cell in row):
+                for cell in reversed(row):
+                    try:
+                        number = float(cell.replace(",", "."))
+                        if -2 <= number <= 30:
+                            return {"currency":s["currency"],"central_bank":s["bank"],"indicator":s["indicator"],"value_percent":number,"observation_date":row[0],"source_url":s["source"],"api_url":s["url"],"status":"verified"}
+                    except ValueError:
+                        continue
+        raise ValueError("Could not identify the SNB policy-rate series in CSV")
     if s["kind"] != "csv":
-        raise RuntimeError("Official source identified, but a reliable machine-readable adapter has not yet been validated.")
+        raise RuntimeError("No validated adapter for this official source.")
     req = urllib.request.Request(s["url"], headers={"User-Agent":"FundamentalFXDesk/1.0", "Accept":"text/csv"})
     with urllib.request.urlopen(req, timeout=25) as response:
         raw = response.read().decode("utf-8-sig")
