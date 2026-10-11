@@ -41,17 +41,18 @@
 </div>
 <section class="section" id="currencies">
  <div class="section-head"><div><h2>Currency Fundamentals · Devises individuelles</h2><p>Chaque devise est évaluée séparément, avant toute comparaison en paire.</p></div><input id="filter" class="search" placeholder="Rechercher USD, EUR..." oninput="filterRows()"></div>
- <div class="tablewrap"><table id="currencyTable"><thead><tr><th>Devise</th><th>Banque centrale</th><th>Taux directeur*</th><th>Inflation*</th><th>Économie / croissance*</th><th>Biais monétaire</th><th>Score démo</th><th>Force relative</th></tr></thead><tbody>
- <tr><td><span class="flag">US</span><span class="currency">USD</span><div class="smallmuted">Dollar américain</div></td><td>Federal Reserve</td><td>5.00%*</td><td>2.8%*</td><td>Solide*</td><td><span class="tag green">Hawkish</span></td><td class="up">+7.8</td><td><span class="bar"><span style="width:88%"></span></span> Forte</td></tr>
- <tr><td><span class="flag">EU</span><span class="currency">EUR</span><div class="smallmuted">Euro</div></td><td>ECB / BCE</td><td>3.00%*</td><td>2.4%*</td><td>Modérée*</td><td><span class="tag yellow">Neutre</span></td><td>+2.1</td><td><span class="bar"><span style="width:59%"></span></span> Moyenne</td></tr>
- <tr><td><span class="flag">GB</span><span class="currency">GBP</span><div class="smallmuted">Livre sterling</div></td><td>Bank of England</td><td>4.50%*</td><td>3.0%*</td><td>Modérée*</td><td><span class="tag green">Hawkish</span></td><td class="up">+4.0</td><td><span class="bar"><span style="width:70%"></span></span> Forte</td></tr>
- <tr><td><span class="flag">JP</span><span class="currency">JPY</span><div class="smallmuted">Yen japonais</div></td><td>Bank of Japan</td><td>0.50%*</td><td>3.2%*</td><td>Faible*</td><td><span class="tag red">Dovish</span></td><td class="down">−5.1</td><td><span class="bar negative"><span style="width:25%"></span></span> Faible</td></tr>
- <tr><td><span class="flag">CA</span><span class="currency">CAD</span><div class="smallmuted">Dollar canadien</div></td><td>Bank of Canada</td><td>2.75%*</td><td>2.1%*</td><td>Modérée*</td><td><span class="tag yellow">Neutre</span></td><td>+1.3</td><td><span class="bar"><span style="width:54%"></span></span> Moyenne</td></tr>
- <tr><td><span class="flag">AU</span><span class="currency">AUD</span><div class="smallmuted">Dollar australien</div></td><td>Reserve Bank of Australia</td><td>4.10%*</td><td>2.9%*</td><td>Modérée*</td><td><span class="tag yellow">Neutre</span></td><td>+0.8</td><td><span class="bar"><span style="width:51%"></span></span> Moyenne</td></tr>
- <tr><td><span class="flag">NZ</span><span class="currency">NZD</span><div class="smallmuted">Dollar néo-zélandais</div></td><td>Reserve Bank of New Zealand</td><td>3.50%*</td><td>2.5%*</td><td>Faible à modérée*</td><td><span class="tag red">Dovish</span></td><td class="down">−1.8</td><td><span class="bar negative"><span style="width:40%"></span></span> Faible</td></tr>
- <tr><td><span class="flag">CH</span><span class="currency">CHF</span><div class="smallmuted">Franc suisse</div></td><td>Swiss National Bank</td><td>0.25%*</td><td>0.3%*</td><td>Stable*</td><td><span class="tag yellow">Neutre</span></td><td>+2.5</td><td><span class="bar"><span style="width:62%"></span></span> Moyenne</td></tr>
+ <div class="tablewrap"><table id="currencyTable"><thead><tr><th>Devise</th><th>Banque centrale</th><th>Taux directeur (officiel)</th><th>Inflation*</th><th>Économie / croissance*</th><th>Biais monétaire</th><th>Score démo</th><th>Force relative</th></tr></thead><tbody>
+ <tr><td><span class="flag">US</span><span class="currency">USD</span><div class="smallmuted">Dollar américain</div></td><td>Federal Reserve</td><td class="policy-rate" data-ccy="USD">Chargement…</td><td>2.8%*</td><td>Solide*</td><td><span class="tag green">Hawkish</span></td><td class="up">+7.8</td><td><span class="bar"><span style="width:88%"></span></span> Forte</td></tr>
+ <tr><td><span class="flag">EU</span><span class="currency">EUR</span><div class="smallmuted">Euro</div></td><td>ECB / BCE</td><td class="policy-rate" data-ccy="EUR">Chargement…</td><td>2.4%*</td><td>Modérée*</td><td><span class="tag yellow">Neutre</span></td><td>+2.1</td><td><span class="bar"><span style="width:59%"></span></span> Moyenne</td></tr>
+ <tr><td><span class="flag">GB</span><span class="currency">GBP</span><div class="smallmuted">Livre sterling</div></td><td>Bank of England</td><td class="policy-rate" data-ccy="GBP">Chargement…</td><td>3.0%*</td><td>Modérée*</td><td><span class="tag green">Hawkish</span></td><td class="up">+4.0</td><td><span class="bar"><span style="width:70%"></span></span> Forte</td></tr>
+ <tr><td><span class="flag">JP</span><span class="currency">JPY</span><div class="smallmuted">Yen japonais</div></td><td>Bank of Japan</td><td class="policy-rate" data-ccy="JPY">Chargement…</td><td>3.2%*</td><td>Faible*</td><td><span class="tag red">Dovish</span></td><td class="down">−5.1</td><td><span class="bar negative"><span style="width:25%"></span></span> Faible</td></tr>
+ <tr><td><span class="flag">CA</span><span class="currency">CAD</span><div class="smallmuted">Dollar canadien</div></td><td>Bank of Canada</td><td class="policy-rate" data-ccy="CAD">Chargement…</td><td>2.1%*</td><td>Modérée*</td><td><span class="tag yellow">Neutre</span></td><td>+1.3</td><td><span class="bar"><span style="width:54%"></span></span> Moyenne</td></tr>
+ <tr><td><span class="flag">AU</span><span class="currency">AUD</span><div class="smallmuted">Dollar australien</div></td><td>Reserve Bank of Australia</td><td class="policy-rate" data-ccy="AUD">Chargement…</td><td>2.9%*</td><td>Modérée*</td><td><span class="tag yellow">Neutre</span></td><td>+0.8</td><td><span class="bar"><span style="width:51%"></span></span> Moyenne</td></tr>
+ <tr><td><span class="flag">NZ</span><span class="currency">NZD</span><div class="smallmuted">Dollar néo-zélandais</div></td><td>Reserve Bank of New Zealand</td><td class="policy-rate" data-ccy="NZD">Chargement…</td><td>2.5%*</td><td>Faible à modérée*</td><td><span class="tag red">Dovish</span></td><td class="down">−1.8</td><td><span class="bar negative"><span style="width:40%"></span></span> Faible</td></tr>
+ <tr><td><span class="flag">CH</span><span class="currency">CHF</span><div class="smallmuted">Franc suisse</div></td><td>Swiss National Bank</td><td class="policy-rate" data-ccy="CHF">Chargement…</td><td>0.3%*</td><td>Stable*</td><td><span class="tag yellow">Neutre</span></td><td>+2.5</td><td><span class="bar"><span style="width:62%"></span></span> Moyenne</td></tr>
  </tbody></table></div>
- <div class="notice">* Les taux, chiffres d'inflation, descriptions économiques et scores de cette maquette sont fictifs / illustratifs, pas des données actuelles vérifiées. Ne les utilisez pas pour prendre une décision de trading.</div>
+ <div id="rateStatus" class="notice">Chargement des taux officiels…</div>
+ <div class="notice">* Le taux directeur vient de sources officielles (voir ci-dessus). Les chiffres d'inflation, descriptions économiques et scores de cette maquette sont fictifs / illustratifs, pas des données actuelles vérifiées. Ne les utilisez pas pour prendre une décision de trading.</div>
 </section>
 <section class="section" id="heatmap">
  <div class="section-head"><div><h2>Currency Strength Heatmap</h2><p>Vue comparative de la force estimée de chaque devise — valeurs de démonstration.</p></div><span class="smallmuted">Score fictif : −10 à +10</span></div>
@@ -154,6 +155,27 @@
 <script>
 document.getElementById('date').textContent = new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'});
 function filterRows(){const q=document.getElementById('filter').value.toLowerCase();document.querySelectorAll('#currencyTable tbody tr').forEach(r=>r.classList.toggle('hidden',!r.innerText.toLowerCase().includes(q)));}
+
+(async function(){
+ const st=document.getElementById('rateStatus');
+ try{
+  const r=await fetch('data/official-rates.json?ts='+Date.now(),{cache:'no-store'});
+  if(!r.ok)throw new Error('fichier indisponible ('+r.status+')');
+  const d=await r.json(),by={};(d.rates||[]).forEach(x=>by[x.currency]=x);
+  document.querySelectorAll('.policy-rate').forEach(td=>{
+   const x=by[td.dataset.ccy];td.textContent='';
+   if(!x){td.textContent='Indisponible';td.className='policy-rate smallmuted';return;}
+   td.append(Number(x.value_percent).toFixed(2)+'%');
+   const sm=document.createElement('div');sm.className='smallmuted';sm.textContent=x.observation_date;
+   sm.title=x.origin+' · '+x.indicator;td.append(sm);
+  });
+  const n=(d.rates||[]).length;
+  st.textContent=n+' taux sur '+(d.coverage?.total_currencies??8)+' vérifié(s) · mise à jour (UTC) : '+(d.generated_at_utc||'jamais')+(n<8?' · les autres sont indisponibles, aucun chiffre de remplacement n\'est affiché.':'');
+ }catch(e){
+  document.querySelectorAll('.policy-rate').forEach(td=>{td.textContent='Indisponible';td.className='policy-rate smallmuted';});
+  st.textContent='Taux officiels indisponibles : '+e.message;
+ }
+})();
 document.querySelectorAll('.nav').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));a.classList.add('active')}));
 </script>
 </body></html>

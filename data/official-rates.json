@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": null,
+  "note": "Instantané initial vide. Le workflow GitHub Actions le remplacera par des observations vérifiées.",
+  "coverage": {
+    "total_currencies": 8,
+    "verified": 0,
+    "unavailable": 8
+  },
+  "rates": [],
+  "source_errors": [
+    {
+      "currency": "USD",
+      "central_bank": "Federal Reserve",
+      "source_url": "https://www.federalreserve.gov/monetarypolicy.htm",
+      "status": "unavailable",
+      "error": "Pas encore collecté : le workflow GitHub Actions n’a pas encore été exécuté."
+    },
+    {
+      "currency": "EUR",
+      "central_bank": "European Central Bank",
+      "source_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+      "status": "unavailable",
+      "error": "Pas encore collecté : le workflow GitHub Actions n’a pas encore été exécuté."
+    },
+    {
+      "currency": "CAD",
+      "central_bank": "Bank of Canada",
+      "source_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/",
+      "status": "unavailable",
+      "error": "Pas encore collecté : le workflow GitHub Actions n’a pas encore été exécuté."
+    },
+    {
+      "currency": "GBP",
+      "central_bank": "Bank of England",
+      "source_url": "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
+      "status": "unavailable",
+      "error": "Pas encore collecté : le workflow GitHub Actions n’a pas encore été exécuté."
+    },
+    {
+      "currency": "JPY",
+      "central_bank": "Bank of Japan",
+      "source_url": "https://www.boj.or.jp/en/mopo/",
+      "status": "unavailable",
+      "error": "Pas encore collecté : le workflow GitHub Actions n’a pas encore été exécuté."
+    },
+    {
+      "currency": "AUD",
+      "central_bank": "Reserve Bank of Australia",
+      "source_url": "https://www.rba.gov.au/statistics/cash-rate/",
+      "status": "unavailable",
+      "error": "Pas encore collecté : le workflow GitHub Actions n’a pas encore été exécuté."
+    },
+    {
+      "currency": "NZD",
+      "central_bank": "Reserve Bank of New Zealand",
+      "source_url": "https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate",
+      "status": "unavailable",
+      "error": "Pas encore collecté : le workflow GitHub Actions n’a pas encore été exécuté."
+    },
+    {
+      "currency": "CHF",
+      "central_bank": "Swiss National Bank",
+      "source_url": "https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy/decisions",
+      "status": "unavailable",
+      "error": "Pas encore collecté : le workflow GitHub Actions n’a pas encore été exécuté."
+    }
+  ]
+}
