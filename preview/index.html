@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fundamental FX Desk</title>
+<style>
+:root{--bg:#0a0e14;--panel:#111821;--panel2:#151f2b;--line:#253241;--text:#e8eef5;--muted:#8e9dad;--green:#3dd598;--red:#ff6876;--yellow:#f5c451;--blue:#65a9ff;--purple:#b49aff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Inter,system-ui,-apple-system,Segoe UI,sans-serif}button{cursor:pointer;font:inherit;color:inherit}.app{display:grid;grid-template-columns:225px 1fr;min-height:100vh}.sidebar{background:#0d131b;border-right:1px solid var(--line);padding:22px 14px;position:sticky;top:0;height:100vh}.brand{font-size:17px;font-weight:800;letter-spacing:.5px;margin:2px 10px 5px}.brand span{color:var(--green)}.subbrand{color:var(--muted);font-size:11px;margin:0 10px 28px}.navlabel{font-size:10px;color:#647487;font-weight:800;letter-spacing:1.5px;margin:22px 10px 8px}.nav{display:flex;align-items:center;gap:10px;padding:10px 11px;margin:3px 0;border-radius:8px;color:#aeb9c7;text-decoration:none}.nav:hover,.nav.active{background:#1b2936;color:white}.nav.active{box-shadow:inset 3px 0 var(--green)}.nav i{width:18px;text-align:center;font-style:normal}.sidebar-note{position:absolute;bottom:18px;left:16px;right:16px;background:#151e28;border:1px solid var(--line);padding:12px;border-radius:9px;color:var(--muted);font-size:11px}.main{min-width:0;padding:26px clamp(14px,3vw,34px) 40px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:22px}.eyebrow{color:var(--green);font-size:10px;font-weight:800;letter-spacing:1.7px}.h1{font-size:26px;font-weight:800;letter-spacing:-.6px;margin:3px 0}.desc{color:var(--muted);font-size:12px}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.pill,.btn{border:1px solid var(--line);background:var(--panel);border-radius:7px;padding:8px 11px;font-size:11px}.demo{color:var(--yellow);border-color:#68572d;background:#211c12}.btn:hover{border-color:var(--green)}.section{margin-top:24px;scroll-margin-top:16px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin-bottom:12px;flex-wrap:wrap}.section-head h2{font-size:16px;margin:0;font-weight:750}.section-head p{margin:3px 0 0;color:var(--muted);font-size:11px}.smallmuted{color:var(--muted);font-size:11px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat{background:linear-gradient(145deg,#141e29,#101720);border:1px solid var(--line);padding:15px;border-radius:11px;min-width:0}.stat-label{font-size:11px;color:var(--muted)}.stat-value{font-size:23px;font-weight:800;margin:7px 0 3px}.stat-foot{font-size:10px;color:var(--muted)}.up{color:var(--green)}.down{color:var(--red)}.warn{color:var(--yellow)}.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}table{width:100%;border-collapse:collapse;min-width:720px}th{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:#8190a1;background:#151f2a;text-align:left;padding:12px 13px;white-space:nowrap}td{padding:13px;border-top:1px solid #202c38;white-space:nowrap;font-size:12px}tbody tr:hover{background:#17222e}.currency{font-weight:800;font-size:14px}.flag{display:inline-flex;width:26px;height:26px;border-radius:7px;background:#202e3b;align-items:center;justify-content:center;margin-right:8px;font-size:10px;color:#cbd6e1}.tag{display:inline-block;padding:4px 7px;border-radius:5px;font-size:10px;font-weight:800}.tag.green{background:#12372d;color:var(--green)}.tag.red{background:#3b1c25;color:var(--red)}.tag.yellow{background:#3a3019;color:var(--yellow)}.tag.blue{background:#172c48;color:var(--blue)}.bar{width:95px;height:6px;background:#25313d;border-radius:8px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:7px}.bar span{height:100%;display:block;background:var(--green);border-radius:8px}.bar.negative span{background:var(--red)}.two{display:grid;grid-template-columns:1.15fr .85fr;gap:13px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:15px;min-width:0}.panel h3{font-size:13px;margin:0 0 12px}.heatmap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.heat{padding:13px 8px;border-radius:7px;text-align:center;border:1px solid #ffffff10}.heat strong{display:block;font-size:15px}.heat small{font-size:10px;opacity:.8}.heat.pos{background:#123b30;color:#6de2b4}.heat.mid{background:#26313b;color:#c3ced9}.heat.neg{background:#401f28;color:#ff8d98}.list{display:flex;flex-direction:column;gap:0}.item{display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid #24303c}.item:last-child{border:0}.item time{font-size:11px;color:var(--muted)}.item b{font-size:12px}.item small{display:block;color:var(--muted);font-size:10px;margin-top:2px}.bankgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.bank{border:1px solid var(--line);border-radius:9px;padding:12px;background:#121b25}.bank b{font-size:12px}.bank .rate{font-size:20px;font-weight:800;margin:7px 0}.bank small{font-size:10px;color:var(--muted)}.notice{border:1px solid #65532b;background:#211c12;color:#ddc57f;border-radius:8px;padding:11px 13px;font-size:11px;margin-top:16px}.search{max-width:190px;width:100%;background:#0d141c;border:1px solid var(--line);padding:8px 10px;color:var(--text);border-radius:7px}.footer{margin-top:28px;border-top:1px solid var(--line);padding-top:14px;color:#748396;font-size:10px}.hidden{display:none!important}
+@media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto;padding:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--line)}.brand{margin:0 8px}.subbrand{margin:0 10px}.navlabel,.sidebar-note{display:none}.nav{padding:8px;margin:0;font-size:11px}.main{padding-top:18px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.bankgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}}
+@media(max-width:520px){.h1{font-size:22px}.heatmap{grid-template-columns:repeat(4,minmax(0,1fr))}.heat{padding:10px 3px}.heat strong{font-size:13px}.stat{padding:12px}.stat-value{font-size:20px}.bankgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">FUNDAMENTAL<span>FX</span></div><div class="subbrand">MACRO INTELLIGENCE DESK</div>
+  <div class="navlabel">ANALYSE</div>
+  <a class="nav active" href="#overview"><i>▦</i> Vue d'ensemble</a>
+  <a class="nav" href="#currencies"><i>◎</i> Devises individuelles</a>
+  <a class="nav" href="#heatmap"><i>▥</i> Force des devises</a>
+  <a class="nav" href="#banks"><i>🏦</i> Banques centrales</a>
+  <a class="nav" href="#calendar"><i>◷</i> Calendrier économique</a>
+  <div class="navlabel">MARCHÉS</div>
+  <a class="nav" href="#pairs"><i>⇄</i> Paires Forex</a>
+  <a class="nav" href="#cot"><i>🏛️</i> Big Boys / COT</a>
+  <a class="nav" href="#gold"><i>◆</i> Analyse de l'or</a>
+  <a class="nav" href="sources.html"><i>↗</i> Sources officielles</a>
+  <a class="nav" href="data.html"><i>⟳</i> Données automatiques</a>
+  <div class="sidebar-note">Les scores et valeurs affichés sont des exemples de démonstration. Ils ne représentent pas les données de marché en direct.</div>
+</aside>
+<main class="main">
+<header class="top" id="overview">
+ <div><div class="eyebrow">FUNDAMENTAL MARKET MONITOR</div><div class="h1">Macro Dashboard</div><div class="desc">Les fondamentaux d'abord. Les paires ensuite.</div></div>
+ <div class="actions"><span class="pill">● Mode démo</span><span class="pill" id="date"></span><button class="btn" onclick="window.print()">Exporter / Imprimer</button></div>
+</header>
+<div class="cards">
+ <div class="stat"><div class="stat-label">Devise la plus forte · démo</div><div class="stat-value up">USD <span style="font-size:13px">+7.8</span></div><div class="stat-foot">Score fictif de démonstration</div></div>
+ <div class="stat"><div class="stat-label">Devise la plus faible · démo</div><div class="stat-value down">JPY <span style="font-size:13px">−5.1</span></div><div class="stat-foot">Score fictif de démonstration</div></div>
+ <div class="stat"><div class="stat-label">Événements à fort impact</div><div class="stat-value warn">03</div><div class="stat-foot">Exemple d'affichage — pas un calendrier live</div></div>
+ <div class="stat"><div class="stat-label">Biais fondamental global</div><div class="stat-value">Mixte</div><div class="stat-foot">À confirmer avec des données réelles</div></div>
+</div>
+<section class="section" id="currencies">
+ <div class="section-head"><div><h2>Currency Fundamentals · Devises individuelles</h2><p>Chaque devise est évaluée séparément, avant toute comparaison en paire.</p></div><input id="filter" class="search" placeholder="Rechercher USD, EUR..." oninput="filterRows()"></div>
+ <div class="tablewrap"><table id="currencyTable"><thead><tr><th>Devise</th><th>Banque centrale</th><th>Taux directeur*</th><th>Inflation*</th><th>Économie / croissance*</th><th>Biais monétaire</th><th>Score démo</th><th>Force relative</th></tr></thead><tbody>
+ <tr><td><span class="flag">US</span><span class="currency">USD</span><div class="smallmuted">Dollar américain</div></td><td>Federal Reserve</td><td>5.00%*</td><td>2.8%*</td><td>Solide*</td><td><span class="tag green">Hawkish</span></td><td class="up">+7.8</td><td><span class="bar"><span style="width:88%"></span></span> Forte</td></tr>
+ <tr><td><span class="flag">EU</span><span class="currency">EUR</span><div class="smallmuted">Euro</div></td><td>ECB / BCE</td><td>3.00%*</td><td>2.4%*</td><td>Modérée*</td><td><span class="tag yellow">Neutre</span></td><td>+2.1</td><td><span class="bar"><span style="width:59%"></span></span> Moyenne</td></tr>
+ <tr><td><span class="flag">GB</span><span class="currency">GBP</span><div class="smallmuted">Livre sterling</div></td><td>Bank of England</td><td>4.50%*</td><td>3.0%*</td><td>Modérée*</td><td><span class="tag green">Hawkish</span></td><td class="up">+4.0</td><td><span class="bar"><span style="width:70%"></span></span> Forte</td></tr>
+ <tr><td><span class="flag">JP</span><span class="currency">JPY</span><div class="smallmuted">Yen japonais</div></td><td>Bank of Japan</td><td>0.50%*</td><td>3.2%*</td><td>Faible*</td><td><span class="tag red">Dovish</span></td><td class="down">−5.1</td><td><span class="bar negative"><span style="width:25%"></span></span> Faible</td></tr>
+ <tr><td><span class="flag">CA</span><span class="currency">CAD</span><div class="smallmuted">Dollar canadien</div></td><td>Bank of Canada</td><td>2.75%*</td><td>2.1%*</td><td>Modérée*</td><td><span class="tag yellow">Neutre</span></td><td>+1.3</td><td><span class="bar"><span style="width:54%"></span></span> Moyenne</td></tr>
+ <tr><td><span class="flag">AU</span><span class="currency">AUD</span><div class="smallmuted">Dollar australien</div></td><td>Reserve Bank of Australia</td><td>4.10%*</td><td>2.9%*</td><td>Modérée*</td><td><span class="tag yellow">Neutre</span></td><td>+0.8</td><td><span class="bar"><span style="width:51%"></span></span> Moyenne</td></tr>
+ <tr><td><span class="flag">NZ</span><span class="currency">NZD</span><div class="smallmuted">Dollar néo-zélandais</div></td><td>Reserve Bank of New Zealand</td><td>3.50%*</td><td>2.5%*</td><td>Faible à modérée*</td><td><span class="tag red">Dovish</span></td><td class="down">−1.8</td><td><span class="bar negative"><span style="width:40%"></span></span> Faible</td></tr>
+ <tr><td><span class="flag">CH</span><span class="currency">CHF</span><div class="smallmuted">Franc suisse</div></td><td>Swiss National Bank</td><td>0.25%*</td><td>0.3%*</td><td>Stable*</td><td><span class="tag yellow">Neutre</span></td><td>+2.5</td><td><span class="bar"><span style="width:62%"></span></span> Moyenne</td></tr>
+ </tbody></table></div>
+ <div class="notice">* Les taux, chiffres d'inflation, descriptions économiques et scores de cette maquette sont fictifs / illustratifs, pas des données actuelles vérifiées. Ne les utilisez pas pour prendre une décision de trading.</div>
+</section>
+<section class="section" id="heatmap">
+ <div class="section-head"><div><h2>Currency Strength Heatmap</h2><p>Vue comparative de la force estimée de chaque devise — valeurs de démonstration.</p></div><span class="smallmuted">Score fictif : −10 à +10</span></div>
+ <div class="panel"><div class="heatmap">
+ <div class="heat pos"><strong>USD</strong><small>+7.8 · Fort</small></div><div class="heat pos"><strong>GBP</strong><small>+4.0 · Fort</small></div><div class="heat pos"><strong>CHF</strong><small>+2.5 · Moyen</small></div><div class="heat pos"><strong>EUR</strong><small>+2.1 · Moyen</small></div>
+ <div class="heat mid"><strong>CAD</strong><small>+1.3 · Neutre</small></div><div class="heat mid"><strong>AUD</strong><small>+0.8 · Neutre</small></div><div class="heat neg"><strong>NZD</strong><small>−1.8 · Faible</small></div><div class="heat neg"><strong>JPY</strong><small>−5.1 · Faible</small></div>
+ </div></div>
+</section>
+<section class="section" id="banks">
+ <div class="section-head"><div><h2>Central Banks Monitor</h2><p>Les décisions, déclarations et procès-verbaux influencent le biais fondamental.</p></div></div>
+ <div class="bankgrid">
+  <div class="bank"><b>Federal Reserve · USD</b><div class="rate">5.00%*</div><span class="tag green">Hawkish · démo</span><small style="display:block;margin-top:8px">Surveiller : FOMC, dot plot, Powell, minutes.</small></div>
+  <div class="bank"><b>ECB / BCE · EUR</b><div class="rate">3.00%*</div><span class="tag yellow">Neutre · démo</span><small style="display:block;margin-top:8px">Surveiller : décision, conférence, Lagarde.</small></div>
+  <div class="bank"><b>Bank of England · GBP</b><div class="rate">4.50%*</div><span class="tag green">Hawkish · démo</span><small style="display:block;margin-top:8px">Surveiller : vote MPC, minutes, inflation.</small></div>
+  <div class="bank"><b>Bank of Japan · JPY</b><div class="rate">0.50%*</div><span class="tag red">Dovish · démo</span><small style="display:block;margin-top:8px">Surveiller : politique, salaires, yen.</small></div>
+  <div class="bank"><b>Bank of Canada · CAD</b><div class="rate">2.75%*</div><span class="tag yellow">Neutre · démo</span><small style="display:block;margin-top:8px">Surveiller : taux, inflation, emploi, pétrole.</small></div>
+  <div class="bank"><b>Reserve Bank of Australia · AUD</b><div class="rate">4.10%*</div><span class="tag yellow">Neutre · démo</span><small style="display:block;margin-top:8px">Surveiller : RBA, emploi, Chine, matières premières.</small></div>
+  <div class="bank"><b>Reserve Bank of New Zealand · NZD</b><div class="rate">3.50%*</div><span class="tag red">Dovish · démo</span><small style="display:block;margin-top:8px">Surveiller : OCR, inflation, activité.</small></div>
+  <div class="bank"><b>Swiss National Bank · CHF</b><div class="rate">0.25%*</div><span class="tag yellow">Neutre · démo</span><small style="display:block;margin-top:8px">Surveiller : taux, inflation, franc refuge.</small></div>
+ </div>
+ <div class="notice">Avant d'utiliser le tableau en réel, vérifier chaque décision et déclaration sur le site officiel de la banque centrale concernée.</div>
+</section>
+<section class="section" id="calendar">
+ <div class="section-head"><div><h2>Economic Calendar</h2><p>Exemples de publications à suivre pour analyser les devises.</p></div></div>
+ <div class="panel"><div class="list">
+  <div class="item"><time>À planifier</time><div><b>Inflation CPI / Core CPI</b><small>USD · EUR · GBP · CAD · AUD · NZD · CHF · JPY — comparer réel, prévision et précédent</small></div><span class="tag red">Fort impact</span></div>
+  <div class="item"><time>À planifier</time><div><b>Décision de taux + déclaration</b><small>Toutes les devises — lire le communiqué et le ton hawkish/dovish</small></div><span class="tag red">Fort impact</span></div>
+  <div class="item"><time>À planifier</time><div><b>Emploi / salaires</b><small>NFP, chômage, salaires, emploi national</small></div><span class="tag red">Fort impact</span></div>
+  <div class="item"><time>À planifier</time><div><b>PIB, PMI et ventes au détail</b><small>Évaluer la croissance et les surprises par rapport aux attentes</small></div><span class="tag yellow">Impact moyen</span></div>
+ </div></div>
+ <p class="smallmuted">Ce n'est pas un calendrier daté en direct. Ajoute ensuite une source/API de calendrier économique fiable pour afficher les heures et chiffres actuels.</p>
+</section>
+ <section class="section" id="pairs">
+  <div class="section-head"><div><h2>Forex Pair Setups · 28 paires</h2><p>Les 28 combinaisons uniques des 8 devises. Scores ci-dessous calculés à partir des scores fictifs affichés plus haut : ce ne sont pas des signaux live.</p></div></div>
+  <div class="tablewrap"><table><thead><tr><th>Paire</th><th>Score devise A*</th><th>Score devise B*</th><th>Écart A − B*</th><th>Biais indicatif</th><th>Signal démo</th></tr></thead><tbody>
+  <tr><td><b>USD/EUR</b></td><td>+7.8</td><td>+2.1</td><td>+5.7</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Buy</span></td></tr>
+  <tr><td><b>USD/GBP</b></td><td>+7.8</td><td>+4.0</td><td>+3.8</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Weak Buy</span></td></tr>
+  <tr><td><b>USD/JPY</b></td><td>+7.8</td><td>-5.1</td><td>+12.9</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Strong Buy</span></td></tr>
+  <tr><td><b>USD/CAD</b></td><td>+7.8</td><td>+1.3</td><td>+6.5</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Buy</span></td></tr>
+  <tr><td><b>USD/AUD</b></td><td>+7.8</td><td>+0.8</td><td>+7.0</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Buy</span></td></tr>
+  <tr><td><b>USD/NZD</b></td><td>+7.8</td><td>-1.8</td><td>+9.6</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Strong Buy</span></td></tr>
+  <tr><td><b>USD/CHF</b></td><td>+7.8</td><td>+2.5</td><td>+5.3</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Buy</span></td></tr>
+  <tr><td><b>EUR/GBP</b></td><td>+2.1</td><td>+4.0</td><td>-1.9</td><td><span class="tag yellow">GBP dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
+  <tr><td><b>EUR/JPY</b></td><td>+2.1</td><td>-5.1</td><td>+7.2</td><td><span class="tag green">EUR dominant</span></td><td><span class="tag green">Buy</span></td></tr>
+  <tr><td><b>EUR/CAD</b></td><td>+2.1</td><td>+1.3</td><td>+0.8</td><td><span class="tag yellow">EUR dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
+  <tr><td><b>EUR/AUD</b></td><td>+2.1</td><td>+0.8</td><td>+1.3</td><td><span class="tag yellow">EUR dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
+  <tr><td><b>EUR/NZD</b></td><td>+2.1</td><td>-1.8</td><td>+3.9</td><td><span class="tag green">EUR dominant</span></td><td><span class="tag green">Weak Buy</span></td></tr>
+  <tr><td><b>EUR/CHF</b></td><td>+2.1</td><td>+2.5</td><td>-0.4</td><td><span class="tag yellow">CHF dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
+  <tr><td><b>GBP/JPY</b></td><td>+4.0</td><td>-5.1</td><td>+9.1</td><td><span class="tag green">GBP dominant</span></td><td><span class="tag green">Strong Buy</span></td></tr>
+  <tr><td><b>GBP/CAD</b></td><td>+4.0</td><td>+1.3</td><td>+2.7</td><td><span class="tag green">GBP dominant</span></td><td><span class="tag green">Weak Buy</span></td></tr>
+  <tr><td><b>GBP/AUD</b></td><td>+4.0</td><td>+0.8</td><td>+3.2</td><td><span class="tag green">GBP dominant</span></td><td><span class="tag green">Weak Buy</span></td></tr>
+  <tr><td><b>GBP/NZD</b></td><td>+4.0</td><td>-1.8</td><td>+5.8</td><td><span class="tag green">GBP dominant</span></td><td><span class="tag green">Buy</span></td></tr>
+  <tr><td><b>GBP/CHF</b></td><td>+4.0</td><td>+2.5</td><td>+1.5</td><td><span class="tag yellow">GBP dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
+  <tr><td><b>JPY/CAD</b></td><td>-5.1</td><td>+1.3</td><td>-6.4</td><td><span class="tag red">CAD dominant</span></td><td><span class="tag red">Sell</span></td></tr>
+  <tr><td><b>JPY/AUD</b></td><td>-5.1</td><td>+0.8</td><td>-5.9</td><td><span class="tag red">AUD dominant</span></td><td><span class="tag red">Sell</span></td></tr>
+  <tr><td><b>JPY/NZD</b></td><td>-5.1</td><td>-1.8</td><td>-3.3</td><td><span class="tag red">NZD dominant</span></td><td><span class="tag red">Weak Sell</span></td></tr>
+  <tr><td><b>JPY/CHF</b></td><td>-5.1</td><td>+2.5</td><td>-7.6</td><td><span class="tag red">CHF dominant</span></td><td><span class="tag red">Sell</span></td></tr>
+  <tr><td><b>CAD/AUD</b></td><td>+1.3</td><td>+0.8</td><td>+0.5</td><td><span class="tag yellow">CAD dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
+  <tr><td><b>CAD/NZD</b></td><td>+1.3</td><td>-1.8</td><td>+3.1</td><td><span class="tag green">CAD dominant</span></td><td><span class="tag green">Weak Buy</span></td></tr>
+  <tr><td><b>CAD/CHF</b></td><td>+1.3</td><td>+2.5</td><td>-1.2</td><td><span class="tag yellow">CHF dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
+  <tr><td><b>AUD/NZD</b></td><td>+0.8</td><td>-1.8</td><td>+2.6</td><td><span class="tag green">AUD dominant</span></td><td><span class="tag green">Weak Buy</span></td></tr>
+  <tr><td><b>AUD/CHF</b></td><td>+0.8</td><td>+2.5</td><td>-1.7</td><td><span class="tag yellow">CHF dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
+  <tr><td><b>NZD/CHF</b></td><td>-1.8</td><td>+2.5</td><td>-4.3</td><td><span class="tag red">CHF dominant</span></td><td><span class="tag red">Weak Sell</span></td></tr>
+  </tbody></table></div>
+  <div class="notice">* Les scores et signaux sont purement illustratifs, dérivés des scores de démonstration de cette maquette. Ils ne sont pas calculés à partir de données fondamentales actuelles et ne doivent pas être utilisés pour trader.</div>
+ </section>
+ <section class="section" id="cot">
+  <div class="section-head"><div><h2>Big Boys · Institutional Positioning (COT)</h2><p>Suivre le positionnement publié des grands groupes de traders sur les contrats futures.</p></div><a class="btn" href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm" target="_blank" rel="noopener noreferrer">Ouvrir le rapport officiel CFTC ↗</a></div>
+  <div class="cards">
+   <div class="stat"><div class="stat-label">Dernier rapport COT</div><div class="stat-value">Non connecté</div><div class="stat-foot">La date doit venir du dernier rapport publié.</div></div>
+   <div class="stat"><div class="stat-label">Net Long / Net Short</div><div class="stat-value">—</div><div class="stat-foot">Longs moins shorts, par catégorie.</div></div>
+   <div class="stat"><div class="stat-label">Variation hebdomadaire</div><div class="stat-value">—</div><div class="stat-foot">Variation du net positionnement depuis le rapport précédent.</div></div>
+   <div class="stat"><div class="stat-label">Tendance COT</div><div class="stat-value">En attente</div><div class="stat-foot">Aucune tendance ne sera inventée sans données.</div></div>
+  </div>
+  <div class="tablewrap" style="margin-top:13px"><table><thead><tr><th>Marché / contrat</th><th>Groupe déclaré</th><th>Long</th><th>Short</th><th>Net (L − S)</th><th>Variation hebdo.</th><th>Tendance COT</th><th>Retail vs institutions</th><th>Date du rapport</th></tr></thead><tbody>
+   <tr><td>USD futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
+   <tr><td>EUR futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
+   <tr><td>GBP futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
+   <tr><td>JPY futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
+   <tr><td>CAD futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
+   <tr><td>AUD futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
+   <tr><td>NZD futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
+   <tr><td>CHF futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
+   <tr><td>Gold futures (COMEX)</td><td>Non-commercial / Managed Money*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
+  </tbody></table></div>
+  <div class="notice">* Les catégories disponibles varient selon le type de rapport COT (Legacy, Disaggregated, Traders in Financial Futures) et le contrat. Le COT est publié périodiquement et décrit des positions futures à une date de référence : ce n'est pas le flux en temps réel de toutes les banques. Les champs restent vides tant qu'une source de données fiable n'est pas intégrée. La comparaison avec les traders retail exige une source distincte et comparable.</div>
+ </section>
+<section class="section" id="gold">
+ <div class="section-head"><div><h2>Gold · XAU/USD Fundamentals</h2><p>L'or est analysé séparément : il ne fait pas partie des huit devises.</p></div></div>
+ <div class="cards">
+  <div class="stat"><div class="stat-label">Taux réels US</div><div class="stat-value">À vérifier</div><div class="stat-foot">Des taux réels en hausse peuvent peser sur l'or.</div></div>
+  <div class="stat"><div class="stat-label">Dollar américain</div><div class="stat-value">À vérifier</div><div class="stat-foot">Un USD plus fort peut exercer une pression sur XAU/USD.</div></div>
+  <div class="stat"><div class="stat-label">Risque géopolitique</div><div class="stat-value">À surveiller</div><div class="stat-foot">La demande de valeur refuge peut soutenir l'or.</div></div>
+  <div class="stat"><div class="stat-label">Banques centrales</div><div class="stat-value">À vérifier</div><div class="stat-foot">Les achats officiels et les flux ETF peuvent compter.</div></div>
+ </div>
+ <div class="notice">Aucun signal d'achat/vente live n'est calculé ici. Pour une analyse fiable, il faut intégrer des données actuelles sourcées, leur heure de mise à jour et les surprises par rapport aux prévisions.</div>
+</section>
+<div class="footer">FUNDAMENTAL FX DESK · Maquette de structure · Les données et signaux de démonstration ne sont pas des données live. COT non connecté : consulter la CFTC et vérifier les sources officielles avant toute décision financière.</div>
+</main></div>
+<script>
+document.getElementById('date').textContent = new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'});
+function filterRows(){const q=document.getElementById('filter').value.toLowerCase();document.querySelectorAll('#currencyTable tbody tr').forEach(r=>r.classList.toggle('hidden',!r.innerText.toLowerCase().includes(q)));}
+document.querySelectorAll('.nav').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));a.classList.add('active')}));
+</script>
+</body></html>
