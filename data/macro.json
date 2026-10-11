@@ -1,14 +1,143 @@
 {
   "schema_version": 1,
-  "generated_at_utc": null,
-  "source": "IMF WEO",
-  "year": null,
+  "generated_at_utc": "2026-10-11T17:32:34Z",
+  "source": "IMF World Economic Outlook via DataMapper API (annual; current year = IMF estimate)",
+  "year": 2026,
   "coverage": {
     "total": 8,
-    "verified": 0,
-    "unavailable": 8
+    "verified": 8,
+    "unavailable": 0
   },
-  "areas": [],
+  "areas": [
+    {
+      "currency": "USD",
+      "imf_code": "USA",
+      "inflation": {
+        "year": 2026,
+        "value": 3.2,
+        "previous_year": 2025,
+        "previous_value": 2.7
+      },
+      "gdp_growth": {
+        "year": 2026,
+        "value": 2.3,
+        "previous_year": 2025,
+        "previous_value": 2.1
+      }
+    },
+    {
+      "currency": "EUR",
+      "imf_code": "EURO",
+      "inflation": {
+        "year": 2026,
+        "value": 2.6,
+        "previous_year": 2025,
+        "previous_value": 2.1
+      },
+      "gdp_growth": {
+        "year": 2026,
+        "value": 1.1,
+        "previous_year": 2025,
+        "previous_value": 1.4
+      }
+    },
+    {
+      "currency": "GBP",
+      "imf_code": "GBR",
+      "inflation": {
+        "year": 2026,
+        "value": 3.2,
+        "previous_year": 2025,
+        "previous_value": 3.4
+      },
+      "gdp_growth": {
+        "year": 2026,
+        "value": 0.8,
+        "previous_year": 2025,
+        "previous_value": 1.3
+      }
+    },
+    {
+      "currency": "JPY",
+      "imf_code": "JPN",
+      "inflation": {
+        "year": 2026,
+        "value": 2.2,
+        "previous_year": 2025,
+        "previous_value": 3.2
+      },
+      "gdp_growth": {
+        "year": 2026,
+        "value": 0.7,
+        "previous_year": 2025,
+        "previous_value": 1.2
+      }
+    },
+    {
+      "currency": "CAD",
+      "imf_code": "CAN",
+      "inflation": {
+        "year": 2026,
+        "value": 2.5,
+        "previous_year": 2025,
+        "previous_value": 2.1
+      },
+      "gdp_growth": {
+        "year": 2026,
+        "value": 1.5,
+        "previous_year": 2025,
+        "previous_value": 1.7
+      }
+    },
+    {
+      "currency": "AUD",
+      "imf_code": "AUS",
+      "inflation": {
+        "year": 2026,
+        "value": 4.0,
+        "previous_year": 2025,
+        "previous_value": 2.9
+      },
+      "gdp_growth": {
+        "year": 2026,
+        "value": 2.0,
+        "previous_year": 2025,
+        "previous_value": 2.0
+      }
+    },
+    {
+      "currency": "NZD",
+      "imf_code": "NZL",
+      "inflation": {
+        "year": 2026,
+        "value": 3.1,
+        "previous_year": 2025,
+        "previous_value": 2.8
+      },
+      "gdp_growth": {
+        "year": 2026,
+        "value": 2.1,
+        "previous_year": 2025,
+        "previous_value": 0.2
+      }
+    },
+    {
+      "currency": "CHF",
+      "imf_code": "CHE",
+      "inflation": {
+        "year": 2026,
+        "value": 0.5,
+        "previous_year": 2025,
+        "previous_value": 0.2
+      },
+      "gdp_growth": {
+        "year": 2026,
+        "value": 1.3,
+        "previous_year": 2025,
+        "previous_value": 1.3
+      }
+    }
+  ],
   "errors": [],
   "fetch_errors": []
 }
