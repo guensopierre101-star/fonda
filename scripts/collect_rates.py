@@ -49,6 +49,21 @@ def boc_target():
     return obs["d"], float(obs["V39079"]["v"])
 
 
+_BIS = {}
+
+
+def bis(area):
+    """Policy rates from the BIS central bank policy rates dataset (one request, cached)."""
+    if not _BIS:
+        url = ("https://stats.bis.org/api/v2/data/dataflow/BIS/WS_CBPOL/1.0/"
+               "D.GB+JP+AU+NZ+CH?lastNObservations=1&format=csv")
+        for row in csv.DictReader(io.StringIO(get(url))):
+            _BIS[row["REF_AREA"]] = (row["TIME_PERIOD"], float(row["OBS_VALUE"]))
+    if area not in _BIS:
+        raise ValueError(f"no BIS observation for {area}")
+    return _BIS[area]
+
+
 # currency, bank, indicator, official page, fetcher, max age (days), origin label
 SOURCES = [
     ("USD", "Federal Reserve", "Fed funds target range (upper bound)",
@@ -57,16 +72,16 @@ SOURCES = [
      "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html", ecb_dfr, 14, "ECB Data Portal"),
     ("CAD", "Bank of Canada", "Target for the overnight rate",
      "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/", boc_target, 14, "Bank of Canada Valet API"),
-    ("GBP", "Bank of England", "Central bank rate (OECD, monthly)",
-     "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate", lambda: fred("IRSTCB01GBM156N"), 120, "OECD via FRED (monthly, secondary source)"),
-    ("JPY", "Bank of Japan", "Central bank rate (OECD, monthly)",
-     "https://www.boj.or.jp/en/mopo/", lambda: fred("IRSTCB01JPM156N"), 120, "OECD via FRED (monthly, secondary source)"),
-    ("AUD", "Reserve Bank of Australia", "Central bank rate (OECD, monthly)",
-     "https://www.rba.gov.au/statistics/cash-rate/", lambda: fred("IRSTCB01AUM156N"), 120, "OECD via FRED (monthly, secondary source)"),
-    ("NZD", "Reserve Bank of New Zealand", "Central bank rate (OECD, monthly)",
-     "https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate", lambda: fred("IRSTCB01NZM156N"), 120, "OECD via FRED (monthly, secondary source)"),
-    ("CHF", "Swiss National Bank", "Central bank rate (OECD, monthly)",
-     "https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy/decisions", lambda: fred("IRSTCB01CHM156N"), 120, "OECD via FRED (monthly, secondary source)"),
+    ("GBP", "Bank of England", "Policy rate (BIS)",
+     "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate", lambda: bis("GB"), 45, "BIS central bank policy rates (secondary source)"),
+    ("JPY", "Bank of Japan", "Policy rate (BIS)",
+     "https://www.boj.or.jp/en/mopo/", lambda: bis("JP"), 45, "BIS central bank policy rates (secondary source)"),
+    ("AUD", "Reserve Bank of Australia", "Policy rate (BIS)",
+     "https://www.rba.gov.au/statistics/cash-rate/", lambda: bis("AU"), 45, "BIS central bank policy rates (secondary source)"),
+    ("NZD", "Reserve Bank of New Zealand", "Policy rate (BIS)",
+     "https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate", lambda: bis("NZ"), 45, "BIS central bank policy rates (secondary source)"),
+    ("CHF", "Swiss National Bank", "Policy rate (BIS)",
+     "https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy/decisions", lambda: bis("CH"), 45, "BIS central bank policy rates (secondary source)"),
 ]
 
 
