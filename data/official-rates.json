@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-11T15:23:16.969893+00:00",
+  "generated_at_utc": "2026-10-11T15:47:19.686494+00:00",
   "note": "Coverage lists all eight central banks. Only successfully parsed official machine-readable observations appear as verified rates. Unavailable adapters are not replaced by estimates. Do not derive trading signals from partial coverage.",
   "coverage": {
     "total_currencies": 8,
