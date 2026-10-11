@@ -1,14 +1,28 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-11T17:24:27Z",
+  "generated_at_utc": "2026-10-11T17:25:34Z",
   "source": "CFTC Commitments of Traders, futures only (TFF for currencies, Disaggregated for gold)",
   "report_date": "2026-10-06",
   "coverage": {
     "total": 9,
-    "verified": 8,
-    "unavailable": 1
+    "verified": 9,
+    "unavailable": 0
   },
   "markets": [
+    {
+      "currency": "USD",
+      "market": "USD Index (ICE)",
+      "group": "Leveraged Funds",
+      "long": 15283,
+      "short": 14419,
+      "net": 864,
+      "net_change": 503,
+      "open_interest": 51095,
+      "nonreportable_net": 2260,
+      "report_date": "2026-10-06",
+      "contract_name": "USD INDEX",
+      "previous_report_date": "2026-09-29"
+    },
     {
       "currency": "EUR",
       "market": "Euro FX (CME)",
@@ -122,12 +136,5 @@
       "previous_report_date": "2026-09-29"
     }
   ],
-  "errors": [
-    {
-      "currency": "USD",
-      "market": "USD Index (ICE)",
-      "status": "unavailable",
-      "error": "ValueError: unexpected contract 'USD INDEX' for code 098662"
-    }
-  ]
+  "errors": []
 }
