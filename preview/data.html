@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Données automatiques | Fundamental FX Desk</title>
+<style>
+:root{color-scheme:dark;--bg:#0a0e14;--panel:#111923;--line:#263444;--text:#e8eef5;--muted:#9aaabd;--green:#4ade80;--amber:#fbbf24}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;padding:22px}main{max-width:920px;margin:auto}a{color:#7dd3fc}.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}.muted{color:var(--muted)}.status{padding:12px;border-radius:9px;background:#182331;margin:10px 0}.big{font-size:1.15rem;font-weight:700}.row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding:12px 0}.warn{color:var(--amber)}.good{color:var(--green)}button{background:#1d3448;color:var(--text);border:1px solid #36536d;border-radius:8px;padding:10px 14px;font:inherit;cursor:pointer}
+</style>
+</head>
+<body><main>
+<p><a href="index.html">← Retour au tableau de bord</a></p>
+<h1>Données macroéconomiques automatiques</h1>
+<p class="muted">Cette page lit le dernier instantané produit par GitHub Actions. Elle ne crée pas de chiffres et n'utilise pas les données manquantes pour fabriquer des signaux.</p>
+<section class="panel"><div id="state" class="status">Chargement de l’instantané officiel…</div><div id="meta" class="muted"></div><div id="rates"></div></section>
+<section class="panel"><h2>Couverture et limites</h2><p>Le collecteur vérifie les sources des huit banques centrales : Fed (USD), BCE (EUR), Banque d’Angleterre (GBP), Banque du Japon (JPY), Banque du Canada (CAD), Banque de réserve d’Australie (AUD), Banque de réserve de Nouvelle-Zélande (NZD) et Banque nationale suisse (CHF). Seules les séries machine-readable effectivement récupérées et validées sont affichées comme observations vérifiées ; les connecteurs non validés restent indiqués comme indisponibles.</p><p class="warn">Important : tant que la couverture est partielle, ces données ne doivent pas être interprétées comme un signal global d’achat ou de vente sur une paire.</p><p><a href="sources.html">Consulter les sources officielles</a> · <a href="data/official-rates.json">Voir le fichier de données</a></p><button id="refresh">Recharger les données</button></section>
+</main>
+<script>
+const state=document.getElementById('state'),meta=document.getElementById('meta'),rates=document.getElementById('rates');
+async function load(){state.textContent='Chargement de l’instantané officiel…';rates.replaceChildren();try{const r=await fetch('data/official-rates.json?ts='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('Fichier de données indisponible ('+r.status+')');const d=await r.json();meta.textContent='Dernière exécution du collecteur (UTC) : '+(d.generated_at_utc||'inconnue')+' · '+(d.coverage?.verified??0)+' observation(s) vérifiée(s).';if(!d.rates?.length){state.className='status warn';state.textContent='Aucune observation officielle validée pour le moment. Aucun chiffre de remplacement ne sera affiché.';}else{state.className='status good';state.textContent='Observation(s) officielle(s) récupérée(s). Consultez les erreurs pour voir les sources qui restent indisponibles.';for(const item of d.rates){const row=document.createElement('div');row.className='row';const left=document.createElement('div');const name=document.createElement('div');name.className='big';name.textContent=item.currency+' — '+item.indicator;const source=document.createElement('a');source.href=item.source_url;source.target='_blank';source.rel='noopener';source.textContent='Source officielle';left.append(name,document.createTextNode(item.central_bank+' · date de l’observation : '+item.observation_date+' · '),source);const value=document.createElement('div');value.className='big';value.textContent=Number(item.value_percent).toLocaleString('fr-FR',{maximumFractionDigits:4})+' %';row.append(left,value);rates.append(row);}}if(d.source_errors?.length){for(const err of d.source_errors){const p=document.createElement('p');p.className='muted';p.textContent=err.currency+': source indisponible — '+err.error;rates.append(p);}}}catch(e){state.className='status warn';state.textContent='Les données automatiques ne sont pas encore disponibles : '+e.message;meta.textContent='Vérifiez que le workflow GitHub Actions a déjà été exécuté.';}}
+document.getElementById('refresh').addEventListener('click',load);load();
+</script>
+</body></html>
