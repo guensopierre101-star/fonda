@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": null,
+  "source": "CFTC Commitments of Traders",
+  "report_date": null,
+  "coverage": {
+    "total": 9,
+    "verified": 0,
+    "unavailable": 9
+  },
+  "markets": [],
+  "errors": []
+}

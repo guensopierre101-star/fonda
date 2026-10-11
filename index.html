@@ -122,23 +122,13 @@
  <section class="section" id="cot">
   <div class="section-head"><div><h2>Big Boys · Institutional Positioning (COT)</h2><p>Suivre le positionnement publié des grands groupes de traders sur les contrats futures.</p></div><a class="btn" href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm" target="_blank" rel="noopener noreferrer">Ouvrir le rapport officiel CFTC ↗</a></div>
   <div class="cards">
-   <div class="stat"><div class="stat-label">Dernier rapport COT</div><div class="stat-value">Non connecté</div><div class="stat-foot">La date doit venir du dernier rapport publié.</div></div>
-   <div class="stat"><div class="stat-label">Net Long / Net Short</div><div class="stat-value">—</div><div class="stat-foot">Longs moins shorts, par catégorie.</div></div>
-   <div class="stat"><div class="stat-label">Variation hebdomadaire</div><div class="stat-value">—</div><div class="stat-foot">Variation du net positionnement depuis le rapport précédent.</div></div>
-   <div class="stat"><div class="stat-label">Tendance COT</div><div class="stat-value">En attente</div><div class="stat-foot">Aucune tendance ne sera inventée sans données.</div></div>
+   <div class="stat"><div class="stat-label">Dernier rapport COT</div><div class="stat-value" id="cotDate">…</div><div class="stat-foot" id="cotDateFoot">Date du dernier rapport publié par la CFTC.</div></div>
+   <div class="stat"><div class="stat-label">Marchés vérifiés</div><div class="stat-value" id="cotCount">…</div><div class="stat-foot">Sur 9 : 8 devises + or. Les autres sont signalés indisponibles.</div></div>
+   <div class="stat"><div class="stat-label">Plus forte hausse du net</div><div class="stat-value up" id="cotUp">—</div><div class="stat-foot" id="cotUpFoot">Variation hebdomadaire du net des spéculateurs.</div></div>
+   <div class="stat"><div class="stat-label">Plus forte baisse du net</div><div class="stat-value down" id="cotDown">—</div><div class="stat-foot" id="cotDownFoot">Variation hebdomadaire du net des spéculateurs.</div></div>
   </div>
-  <div class="tablewrap" style="margin-top:13px"><table><thead><tr><th>Marché / contrat</th><th>Groupe déclaré</th><th>Long</th><th>Short</th><th>Net (L − S)</th><th>Variation hebdo.</th><th>Tendance COT</th><th>Retail vs institutions</th><th>Date du rapport</th></tr></thead><tbody>
-   <tr><td>USD futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
-   <tr><td>EUR futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
-   <tr><td>GBP futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
-   <tr><td>JPY futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
-   <tr><td>CAD futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
-   <tr><td>AUD futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
-   <tr><td>NZD futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
-   <tr><td>CHF futures</td><td>Non-commercial / Leveraged Funds*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
-   <tr><td>Gold futures (COMEX)</td><td>Non-commercial / Managed Money*</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Non disponible</td><td>Non connecté</td><td>À vérifier</td></tr>
-  </tbody></table></div>
-  <div class="notice">* Les catégories disponibles varient selon le type de rapport COT (Legacy, Disaggregated, Traders in Financial Futures) et le contrat. Le COT est publié périodiquement et décrit des positions futures à une date de référence : ce n'est pas le flux en temps réel de toutes les banques. Les champs restent vides tant qu'une source de données fiable n'est pas intégrée. La comparaison avec les traders retail exige une source distincte et comparable.</div>
+  <div class="tablewrap" style="margin-top:13px"><table><thead><tr><th>Marché / contrat</th><th>Groupe déclaré</th><th>Long</th><th>Short</th><th>Net (L − S)</th><th>Variation hebdo.</th><th>Tendance COT</th><th>Petits traders (net)</th><th>Date du rapport</th></tr></thead><tbody id="cotBody"><tr><td colspan="9" class="smallmuted">Chargement du COT…</td></tr></tbody></table></div>
+  <div class="notice">* Les catégories disponibles varient selon le type de rapport COT (Legacy, Disaggregated, Traders in Financial Futures) et le contrat. Le COT est publié périodiquement et décrit des positions futures à une date de référence : ce n'est pas le flux en temps réel de toutes les banques. Source : CFTC, futures seulement. Pour les devises, « Leveraged Funds » (rapport TFF) ; pour l'or, « Managed Money » (rapport Disaggregated). Les « petits traders » sont les positions non déclarées (non-reportable), une approximation du retail, pas les clients de courtiers forex. Le net est une photo du mardi, publiée le vendredi.</div>
  </section>
 <section class="section" id="gold">
  <div class="section-head"><div><h2>Gold · XAU/USD Fundamentals</h2><p>L'or est analysé séparément : il ne fait pas partie des huit devises.</p></div></div>
@@ -175,6 +165,31 @@ function filterRows(){const q=document.getElementById('filter').value.toLowerCas
   document.querySelectorAll('.policy-rate').forEach(td=>{td.textContent='Indisponible';td.className='policy-rate smallmuted';});
   st.textContent='Taux officiels indisponibles : '+e.message;
  }
+})();
+
+(async function(){
+ const body=document.getElementById('cotBody'),f=n=>Number(n).toLocaleString('fr-FR'),sg=n=>(n>0?'+':'')+f(n);
+ const fail=m=>{body.innerHTML='';const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=9;td.className='smallmuted';td.textContent='COT indisponible : '+m;tr.append(td);body.append(tr);['cotDate','cotCount'].forEach(i=>document.getElementById(i).textContent='—');};
+ try{
+  const r=await fetch('data/cot.json?ts='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('fichier indisponible ('+r.status+')');
+  const d=await r.json();
+  if(!d.markets||!d.markets.length)return fail('aucune donnée validée pour le moment.');
+  document.getElementById('cotDate').textContent=d.report_date;
+  document.getElementById('cotDateFoot').textContent='Collecté (UTC) : '+d.generated_at_utc;
+  document.getElementById('cotCount').textContent=d.coverage.verified+' / '+d.coverage.total;
+  body.innerHTML='';
+  d.markets.forEach(m=>{
+   const tr=document.createElement('tr'),cell=(t,c)=>{const td=document.createElement('td');td.textContent=t;if(c)td.className=c;tr.append(td);};
+   cell(m.currency+' · '+m.market);cell(m.group);cell(f(m.long));cell(f(m.short));
+   cell(sg(m.net),m.net>=0?'up':'down');cell(sg(m.net_change),m.net_change>=0?'up':'down');
+   cell(m.net_change>0?'Net en hausse':m.net_change<0?'Net en baisse':'Stable');
+   cell(sg(m.nonreportable_net));cell(m.report_date);body.append(tr);
+  });
+  const s=[...d.markets].sort((a,b)=>b.net_change-a.net_change),u=s[0],w=s[s.length-1];
+  document.getElementById('cotUp').textContent=u.currency;document.getElementById('cotUpFoot').textContent=sg(u.net_change)+' contrats';
+  document.getElementById('cotDown').textContent=w.currency;document.getElementById('cotDownFoot').textContent=sg(w.net_change)+' contrats';
+  if(d.errors&&d.errors.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=9;td.className='smallmuted';td.textContent='Indisponibles : '+d.errors.map(e=>e.currency).join(', ');tr.append(td);body.append(tr);}
+ }catch(e){fail(e.message);}
 })();
 document.querySelectorAll('.nav').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));a.classList.add('active')}));
 </script>
