@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": null,
+  "note": "Not fetched yet. Run the GitHub Actions workflow to populate this file with official API observations. No sample market values are included.",
+  "coverage": {
+    "verified": 0,
+    "unavailable": 0,
+    "planned": [
+      "EUR",
+      "USD",
+      "GBP",
+      "JPY",
+      "CAD",
+      "AUD",
+      "NZD",
+      "CHF",
+      "XAU/USD",
+      "CFTC COT"
+    ]
+  },
+  "rates": [],
+  "source_errors": []
+}
