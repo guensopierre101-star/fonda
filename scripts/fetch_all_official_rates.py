@@ -9,7 +9,7 @@ SOURCES = [
  {"currency":"GBP","bank":"Bank of England","indicator":"Official Bank Rate","kind":"html","url":"https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp","source":"https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp","pattern":r"Current official Bank Rate\s*([0-9]+(?:\.[0-9]+)?)\s*%","date_pattern":r"(\d{2} [A-Z][a-z]{2} \d{2})\s*\|\s*[0-9]+(?:\.[0-9]+)?"},
  {"currency":"JPY","bank":"Bank of Japan","indicator":"Policy interest rate","kind":"unavailable","url":"https://www.boj.or.jp/en/mopo/","source":"https://www.boj.or.jp/en/mopo/"},
  {"currency":"CAD","bank":"Bank of Canada","indicator":"Target for the overnight rate","kind":"csv","url":"https://www.bankofcanada.ca/valet/observations/V39079/json?recent=1","source":"https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/","json_series":"V39079"},
- {"currency":"AUD","bank":"Reserve Bank of Australia","indicator":"Cash rate target","kind":"html","url":"https://www.rba.gov.au/statistics/cash-rate/","source":"https://www.rba.gov.au/statistics/cash-rate/","pattern":r"Cash rate target\s*%?\s*</[^>]+>\s*<[^>]+>\s*([0-9]+(?:\.[0-9]+)?)","date_pattern":r"(\d{1,2}\s+[A-Z][a-z]{2}\s+\d{4})"},
+ {"currency":"AUD","bank":"Reserve Bank of Australia","indicator":"Cash rate target","kind":"html","url":"https://www.rba.gov.au/statistics/cash-rate/","source":"https://www.rba.gov.au/statistics/cash-rate/","pattern":r"(\d{1,2}\s+[A-Z][a-z]{2}\s+\d{4})\s+[+-]?\d+(?:\.\d+)?\s+(\d+(?:\.\d+)?)","date_pattern":r"(\d{1,2}\s+[A-Z][a-z]{2}\s+\d{4})"},
  {"currency":"NZD","bank":"Reserve Bank of New Zealand","indicator":"Official Cash Rate","kind":"html","url":"https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate","source":"https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate","pattern":r"Official Cash Rate\s*([0-9]+(?:\.[0-9]+)?)\s*%","date_pattern":r"Updated:?\s*([0-9]{1,2}\s+[A-Z][a-z]+\s+\d{4})"},
  {"currency":"CHF","bank":"Swiss National Bank","indicator":"SNB policy rate","kind":"csv","url":"https://data.snb.ch/api/cube/snboffzisa/data/csv/en","source":"https://data.snb.ch/en/topics/snb/cube/snboffzisa","snb":true},
 ]
@@ -27,11 +27,11 @@ def collect(s):
         match = re.search(s["pattern"], text, re.I)
         if not match:
             raise ValueError("Could not validate the official rate on the source page")
-        number = float(match.group(1))
+        number = float(match.group(2) if s["currency"] == "AUD" else match.group(1))
         date_match = re.search(s["date_pattern"], text, re.I)
         if not date_match:
             raise ValueError("Could not validate an observation date on the source page")
-        date = date_match.group(1)
+        date = match.group(1) if s["currency"] == "AUD" else date_match.group(1)
         return {"currency":s["currency"],"central_bank":s["bank"],"indicator":s["indicator"],"value_percent":number,"observation_date":date,"source_url":s["source"],"api_url":s["url"],"status":"verified"}
     if s.get("json_series"):
         payload = json.loads(raw)
