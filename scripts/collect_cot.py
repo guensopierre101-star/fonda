@@ -30,7 +30,7 @@ DIS_F = ("Managed Money", "m_money_positions_long_all", "m_money_positions_short
          "change_in_m_money_long_all", "change_in_m_money_short_all")
 
 MARKETS = [
-    ("USD", "USD Index (ICE)", TFF, "098662", "U.S. DOLLAR INDEX", TFF_F),
+    ("USD", "USD Index (ICE)", TFF, "098662", "USD INDEX", TFF_F),
     ("EUR", "Euro FX (CME)", TFF, "099741", "EURO FX", TFF_F),
     ("GBP", "British Pound (CME)", TFF, "096742", "BRITISH POUND", TFF_F),
     ("JPY", "Japanese Yen (CME)", TFF, "097741", "JAPANESE YEN", TFF_F),
