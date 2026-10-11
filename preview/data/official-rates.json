@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": null,
+  "note": "PREVIEW ONLY. No rate has been validated for publication. Do not use for trading signals.",
+  "coverage": {
+    "total_currencies": 8,
+    "verified": 0,
+    "unavailable": 8
+  },
+  "rates": [],
+  "source_errors": [
+    {
+      "currency": "USD",
+      "central_bank": "Federal Reserve",
+      "source_url": "https://www.federalreserve.gov/monetarypolicy.htm",
+      "status": "unavailable",
+      "error": "Preview mode: live source validation not completed."
+    },
+    {
+      "currency": "EUR",
+      "central_bank": "European Central Bank",
+      "source_url": "https://www.ecb.europa.eu/press/govcdec/mopo/html/index.en.html",
+      "status": "unavailable",
+      "error": "Preview mode: live source validation not completed."
+    },
+    {
+      "currency": "GBP",
+      "central_bank": "Bank of England",
+      "source_url": "https://www.bankofengland.co.uk/monetary-policy",
+      "status": "unavailable",
+      "error": "Adapter requires live validation."
+    },
+    {
+      "currency": "JPY",
+      "central_bank": "Bank of Japan",
+      "source_url": "https://www.boj.or.jp/en/mopo/",
+      "status": "unavailable",
+      "error": "Adapter not yet validated."
+    },
+    {
+      "currency": "CAD",
+      "central_bank": "Bank of Canada",
+      "source_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/",
+      "status": "unavailable",
+      "error": "Adapter requires live validation."
+    },
+    {
+      "currency": "AUD",
+      "central_bank": "Reserve Bank of Australia",
+      "source_url": "https://www.rba.gov.au/monetary-policy/",
+      "status": "unavailable",
+      "error": "Adapter requires live validation."
+    },
+    {
+      "currency": "NZD",
+      "central_bank": "Reserve Bank of New Zealand",
+      "source_url": "https://www.rbnz.govt.nz/monetary-policy",
+      "status": "unavailable",
+      "error": "Adapter requires live validation."
+    },
+    {
+      "currency": "CHF",
+      "central_bank": "Swiss National Bank",
+      "source_url": "https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy",
+      "status": "unavailable",
+      "error": "Adapter requires live validation."
+    }
+  ]
+}
