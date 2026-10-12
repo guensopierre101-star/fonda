@@ -22,6 +22,8 @@ jobs:
         run: python scripts/collect_cot.py
       - name: Collect inflation and growth
         run: python scripts/collect_macro.py
+      - name: Validate collected data before publishing
+        run: python scripts/validate_data.py
       - name: Commit changes
         run: |
           git config user.name "fonda-data-bot"
