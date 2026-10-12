@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-11T18:36:05Z",
+  "generated_at_utc": "2026-10-12T00:46:30Z",
   "note": "Only validated observations are listed. Missing currencies appear in source_errors.",
   "coverage": {
     "total_currencies": 8,
@@ -22,7 +22,7 @@
       "central_bank": "European Central Bank",
       "indicator": "Deposit facility rate",
       "value_percent": 2.5,
-      "observation_date": "2026-10-11",
+      "observation_date": "2026-10-12",
       "source_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
       "origin": "ECB Data Portal"
     },
