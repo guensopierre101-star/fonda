@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-12T06:47:00Z",
+  "generated_at_utc": "2026-10-12T12:58:39Z",
   "note": "Only validated observations are listed. Missing currencies appear in source_errors. bias = direction of the policy rate over ~6 months (hawkish: +0.25 or more, dovish: -0.25 or less), not the tone of central bank statements.",
   "coverage": {
     "total_currencies": 8,
@@ -13,7 +13,7 @@
       "central_bank": "Federal Reserve",
       "indicator": "Fed funds target range (upper bound)",
       "value_percent": 4.0,
-      "observation_date": "2026-10-11",
+      "observation_date": "2026-10-12",
       "source_url": "https://www.federalreserve.gov/monetarypolicy.htm",
       "origin": "FRED / Board of Governors",
       "value_6m_ago": 3.75,
@@ -37,7 +37,7 @@
       "central_bank": "Bank of Canada",
       "indicator": "Target for the overnight rate",
       "value_percent": 2.25,
-      "observation_date": "2026-10-08",
+      "observation_date": "2026-10-09",
       "source_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/",
       "origin": "Bank of Canada Valet API",
       "value_6m_ago": 2.25,
