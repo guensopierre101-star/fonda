@@ -26,52 +26,50 @@
   <a class="nav" href="#cot"><i>🏛️</i> Big Boys / COT</a>
   <a class="nav" href="#gold"><i>◆</i> Analyse de l'or</a>
   <a class="nav" href="sources.html"><i>↗</i> Sources officielles</a>
-  <div class="sidebar-note">Les scores et valeurs affichés sont des exemples de démonstration. Ils ne représentent pas les données de marché en direct.</div>
+  <div class="sidebar-note">Taux, inflation, croissance et COT viennent de sources officielles. Le calendrier économique n'est pas encore connecté.</div>
 </aside>
 <main class="main">
 <header class="top" id="overview">
  <div><div class="eyebrow">FUNDAMENTAL MARKET MONITOR</div><div class="h1">Macro Dashboard</div><div class="desc">Les fondamentaux d'abord. Les paires ensuite.</div></div>
- <div class="actions"><span class="pill">● Mode démo</span><span class="pill" id="date"></span><button class="btn" onclick="window.print()">Exporter / Imprimer</button></div>
+ <div class="actions"><span class="pill">● Données réelles · calendrier à venir</span><span class="pill" id="date"></span><button class="btn" onclick="window.print()">Exporter / Imprimer</button></div>
 </header>
 <div class="cards">
- <div class="stat"><div class="stat-label">Devise la plus forte · démo</div><div class="stat-value up">USD <span style="font-size:13px">+7.8</span></div><div class="stat-foot">Score fictif de démonstration</div></div>
- <div class="stat"><div class="stat-label">Devise la plus faible · démo</div><div class="stat-value down">JPY <span style="font-size:13px">−5.1</span></div><div class="stat-foot">Score fictif de démonstration</div></div>
- <div class="stat"><div class="stat-label">Événements à fort impact</div><div class="stat-value warn">03</div><div class="stat-foot">Exemple d'affichage — pas un calendrier live</div></div>
- <div class="stat"><div class="stat-label">Biais fondamental global</div><div class="stat-value">Mixte</div><div class="stat-foot">À confirmer avec des données réelles</div></div>
+ <div class="stat"><div class="stat-label">Devise la plus forte</div><div class="stat-value up" id="topStrong">…</div><div class="stat-foot" id="topStrongFoot">Score calculé à partir des données réelles.</div></div>
+ <div class="stat"><div class="stat-label">Devise la plus faible</div><div class="stat-value down" id="topWeak">…</div><div class="stat-foot" id="topWeakFoot">Score calculé à partir des données réelles.</div></div>
+ <div class="stat"><div class="stat-label">Plus grand écart de paire</div><div class="stat-value" id="topPair">…</div><div class="stat-foot" id="topPairFoot">Écart entre les scores des deux devises.</div></div>
+ <div class="stat"><div class="stat-label">Données vérifiées</div><div class="stat-value" id="dataHealth">…</div><div class="stat-foot">Taux · inflation et PIB · COT</div></div>
 </div>
 <section class="section" id="currencies">
  <div class="section-head"><div><h2>Currency Fundamentals · Devises individuelles</h2><p>Chaque devise est évaluée séparément, avant toute comparaison en paire.</p></div><input id="filter" class="search" placeholder="Rechercher USD, EUR..." oninput="filterRows()"></div>
- <div class="tablewrap"><table id="currencyTable"><thead><tr><th>Devise</th><th>Banque centrale</th><th>Taux directeur (officiel)</th><th>Inflation (FMI)</th><th>Croissance PIB (FMI)</th><th>Biais monétaire</th><th>Score démo</th><th>Force relative</th></tr></thead><tbody>
- <tr><td><span class="flag">US</span><span class="currency">USD</span><div class="smallmuted">Dollar américain</div></td><td>Federal Reserve</td><td class="policy-rate" data-ccy="USD">Chargement…</td><td class="macro-cpi" data-ccy="USD">Chargement…</td><td class="macro-gdp" data-ccy="USD">Chargement…</td><td><span class="tag green">Hawkish</span></td><td class="up">+7.8</td><td><span class="bar"><span style="width:88%"></span></span> Forte</td></tr>
- <tr><td><span class="flag">EU</span><span class="currency">EUR</span><div class="smallmuted">Euro</div></td><td>ECB / BCE</td><td class="policy-rate" data-ccy="EUR">Chargement…</td><td class="macro-cpi" data-ccy="EUR">Chargement…</td><td class="macro-gdp" data-ccy="EUR">Chargement…</td><td><span class="tag yellow">Neutre</span></td><td>+2.1</td><td><span class="bar"><span style="width:59%"></span></span> Moyenne</td></tr>
- <tr><td><span class="flag">GB</span><span class="currency">GBP</span><div class="smallmuted">Livre sterling</div></td><td>Bank of England</td><td class="policy-rate" data-ccy="GBP">Chargement…</td><td class="macro-cpi" data-ccy="GBP">Chargement…</td><td class="macro-gdp" data-ccy="GBP">Chargement…</td><td><span class="tag green">Hawkish</span></td><td class="up">+4.0</td><td><span class="bar"><span style="width:70%"></span></span> Forte</td></tr>
- <tr><td><span class="flag">JP</span><span class="currency">JPY</span><div class="smallmuted">Yen japonais</div></td><td>Bank of Japan</td><td class="policy-rate" data-ccy="JPY">Chargement…</td><td class="macro-cpi" data-ccy="JPY">Chargement…</td><td class="macro-gdp" data-ccy="JPY">Chargement…</td><td><span class="tag red">Dovish</span></td><td class="down">−5.1</td><td><span class="bar negative"><span style="width:25%"></span></span> Faible</td></tr>
- <tr><td><span class="flag">CA</span><span class="currency">CAD</span><div class="smallmuted">Dollar canadien</div></td><td>Bank of Canada</td><td class="policy-rate" data-ccy="CAD">Chargement…</td><td class="macro-cpi" data-ccy="CAD">Chargement…</td><td class="macro-gdp" data-ccy="CAD">Chargement…</td><td><span class="tag yellow">Neutre</span></td><td>+1.3</td><td><span class="bar"><span style="width:54%"></span></span> Moyenne</td></tr>
- <tr><td><span class="flag">AU</span><span class="currency">AUD</span><div class="smallmuted">Dollar australien</div></td><td>Reserve Bank of Australia</td><td class="policy-rate" data-ccy="AUD">Chargement…</td><td class="macro-cpi" data-ccy="AUD">Chargement…</td><td class="macro-gdp" data-ccy="AUD">Chargement…</td><td><span class="tag yellow">Neutre</span></td><td>+0.8</td><td><span class="bar"><span style="width:51%"></span></span> Moyenne</td></tr>
- <tr><td><span class="flag">NZ</span><span class="currency">NZD</span><div class="smallmuted">Dollar néo-zélandais</div></td><td>Reserve Bank of New Zealand</td><td class="policy-rate" data-ccy="NZD">Chargement…</td><td class="macro-cpi" data-ccy="NZD">Chargement…</td><td class="macro-gdp" data-ccy="NZD">Chargement…</td><td><span class="tag red">Dovish</span></td><td class="down">−1.8</td><td><span class="bar negative"><span style="width:40%"></span></span> Faible</td></tr>
- <tr><td><span class="flag">CH</span><span class="currency">CHF</span><div class="smallmuted">Franc suisse</div></td><td>Swiss National Bank</td><td class="policy-rate" data-ccy="CHF">Chargement…</td><td class="macro-cpi" data-ccy="CHF">Chargement…</td><td class="macro-gdp" data-ccy="CHF">Chargement…</td><td><span class="tag yellow">Neutre</span></td><td>+2.5</td><td><span class="bar"><span style="width:62%"></span></span> Moyenne</td></tr>
+ <div class="tablewrap"><table id="currencyTable"><thead><tr><th>Devise</th><th>Banque centrale</th><th>Taux directeur (officiel)</th><th>Inflation (FMI)</th><th>Croissance PIB (FMI)</th><th>Taux réel (taux − inflation)</th><th>Score</th><th>Force relative</th></tr></thead><tbody>
+ <tr><td><span class="flag">US</span><span class="currency">USD</span><div class="smallmuted">Dollar américain</div></td><td>Federal Reserve</td><td class="policy-rate" data-ccy="USD">Chargement…</td><td class="macro-cpi" data-ccy="USD">Chargement…</td><td class="macro-gdp" data-ccy="USD">Chargement…</td><td class="realcell" data-ccy="USD">…</td><td class="scorecell" data-ccy="USD">…</td><td class="forcecell" data-ccy="USD">…</td></tr>
+ <tr><td><span class="flag">EU</span><span class="currency">EUR</span><div class="smallmuted">Euro</div></td><td>ECB / BCE</td><td class="policy-rate" data-ccy="EUR">Chargement…</td><td class="macro-cpi" data-ccy="EUR">Chargement…</td><td class="macro-gdp" data-ccy="EUR">Chargement…</td><td class="realcell" data-ccy="EUR">…</td><td class="scorecell" data-ccy="EUR">…</td><td class="forcecell" data-ccy="EUR">…</td></tr>
+ <tr><td><span class="flag">GB</span><span class="currency">GBP</span><div class="smallmuted">Livre sterling</div></td><td>Bank of England</td><td class="policy-rate" data-ccy="GBP">Chargement…</td><td class="macro-cpi" data-ccy="GBP">Chargement…</td><td class="macro-gdp" data-ccy="GBP">Chargement…</td><td class="realcell" data-ccy="GBP">…</td><td class="scorecell" data-ccy="GBP">…</td><td class="forcecell" data-ccy="GBP">…</td></tr>
+ <tr><td><span class="flag">JP</span><span class="currency">JPY</span><div class="smallmuted">Yen japonais</div></td><td>Bank of Japan</td><td class="policy-rate" data-ccy="JPY">Chargement…</td><td class="macro-cpi" data-ccy="JPY">Chargement…</td><td class="macro-gdp" data-ccy="JPY">Chargement…</td><td class="realcell" data-ccy="JPY">…</td><td class="scorecell" data-ccy="JPY">…</td><td class="forcecell" data-ccy="JPY">…</td></tr>
+ <tr><td><span class="flag">CA</span><span class="currency">CAD</span><div class="smallmuted">Dollar canadien</div></td><td>Bank of Canada</td><td class="policy-rate" data-ccy="CAD">Chargement…</td><td class="macro-cpi" data-ccy="CAD">Chargement…</td><td class="macro-gdp" data-ccy="CAD">Chargement…</td><td class="realcell" data-ccy="CAD">…</td><td class="scorecell" data-ccy="CAD">…</td><td class="forcecell" data-ccy="CAD">…</td></tr>
+ <tr><td><span class="flag">AU</span><span class="currency">AUD</span><div class="smallmuted">Dollar australien</div></td><td>Reserve Bank of Australia</td><td class="policy-rate" data-ccy="AUD">Chargement…</td><td class="macro-cpi" data-ccy="AUD">Chargement…</td><td class="macro-gdp" data-ccy="AUD">Chargement…</td><td class="realcell" data-ccy="AUD">…</td><td class="scorecell" data-ccy="AUD">…</td><td class="forcecell" data-ccy="AUD">…</td></tr>
+ <tr><td><span class="flag">NZ</span><span class="currency">NZD</span><div class="smallmuted">Dollar néo-zélandais</div></td><td>Reserve Bank of New Zealand</td><td class="policy-rate" data-ccy="NZD">Chargement…</td><td class="macro-cpi" data-ccy="NZD">Chargement…</td><td class="macro-gdp" data-ccy="NZD">Chargement…</td><td class="realcell" data-ccy="NZD">…</td><td class="scorecell" data-ccy="NZD">…</td><td class="forcecell" data-ccy="NZD">…</td></tr>
+ <tr><td><span class="flag">CH</span><span class="currency">CHF</span><div class="smallmuted">Franc suisse</div></td><td>Swiss National Bank</td><td class="policy-rate" data-ccy="CHF">Chargement…</td><td class="macro-cpi" data-ccy="CHF">Chargement…</td><td class="macro-gdp" data-ccy="CHF">Chargement…</td><td class="realcell" data-ccy="CHF">…</td><td class="scorecell" data-ccy="CHF">…</td><td class="forcecell" data-ccy="CHF">…</td></tr>
  </tbody></table></div>
  <div id="rateStatus" class="notice">Chargement des taux officiels…</div>
  <div class="notice">Inflation et croissance : estimations annuelles du FMI (World Economic Outlook), l'année en cours est une estimation, pas un chiffre mensuel. * Le taux directeur vient de sources officielles (voir ci-dessus). Les chiffres d'inflation, descriptions économiques et scores de cette maquette sont fictifs / illustratifs, pas des données actuelles vérifiées. Ne les utilisez pas pour prendre une décision de trading.</div>
 </section>
 <section class="section" id="heatmap">
- <div class="section-head"><div><h2>Currency Strength Heatmap</h2><p>Vue comparative de la force estimée de chaque devise — valeurs de démonstration.</p></div><span class="smallmuted">Score fictif : −10 à +10</span></div>
- <div class="panel"><div class="heatmap">
- <div class="heat pos"><strong>USD</strong><small>+7.8 · Fort</small></div><div class="heat pos"><strong>GBP</strong><small>+4.0 · Fort</small></div><div class="heat pos"><strong>CHF</strong><small>+2.5 · Moyen</small></div><div class="heat pos"><strong>EUR</strong><small>+2.1 · Moyen</small></div>
- <div class="heat mid"><strong>CAD</strong><small>+1.3 · Neutre</small></div><div class="heat mid"><strong>AUD</strong><small>+0.8 · Neutre</small></div><div class="heat neg"><strong>NZD</strong><small>−1.8 · Faible</small></div><div class="heat neg"><strong>JPY</strong><small>−5.1 · Faible</small></div>
- </div></div>
-</section>
+ <div class="section-head"><div><h2>Currency Strength Heatmap</h2><p>Force relative de chaque devise, calculée à partir des données réelles ci-dessus.</p></div><span class="smallmuted">Score : −10 à +10</span></div>
+ <div class="panel"><div class="heatmap" id="heatmapGrid"><div class="smallmuted">Chargement…</div></div>
+ <div class="smallmuted" style="margin-top:12px;line-height:1.6"><b>Méthode.</b> Pour chaque indicateur, on compare les 8 devises entre elles (écart à la moyenne, limité à ±2 écarts-types), puis on pondère : taux directeur 35 % · taux réel (taux − inflation) 25 % · croissance du PIB 25 % · positionnement des Leveraged Funds en % de l'open interest (COT) 15 %. Résultat multiplié par 5 pour obtenir −10 à +10. C'est un classement <i>relatif</i> entre ces 8 devises, pas une prévision. Survolez un score dans le tableau pour voir le détail.</div></div>
+ </section>
 <section class="section" id="banks">
  <div class="section-head"><div><h2>Central Banks Monitor</h2><p>Les décisions, déclarations et procès-verbaux influencent le biais fondamental.</p></div></div>
  <div class="bankgrid">
-  <div class="bank"><b>Federal Reserve · USD</b><div class="rate">5.00%*</div><span class="tag green">Hawkish · démo</span><small style="display:block;margin-top:8px">Surveiller : FOMC, dot plot, Powell, minutes.</small></div>
-  <div class="bank"><b>ECB / BCE · EUR</b><div class="rate">3.00%*</div><span class="tag yellow">Neutre · démo</span><small style="display:block;margin-top:8px">Surveiller : décision, conférence, Lagarde.</small></div>
-  <div class="bank"><b>Bank of England · GBP</b><div class="rate">4.50%*</div><span class="tag green">Hawkish · démo</span><small style="display:block;margin-top:8px">Surveiller : vote MPC, minutes, inflation.</small></div>
-  <div class="bank"><b>Bank of Japan · JPY</b><div class="rate">0.50%*</div><span class="tag red">Dovish · démo</span><small style="display:block;margin-top:8px">Surveiller : politique, salaires, yen.</small></div>
-  <div class="bank"><b>Bank of Canada · CAD</b><div class="rate">2.75%*</div><span class="tag yellow">Neutre · démo</span><small style="display:block;margin-top:8px">Surveiller : taux, inflation, emploi, pétrole.</small></div>
-  <div class="bank"><b>Reserve Bank of Australia · AUD</b><div class="rate">4.10%*</div><span class="tag yellow">Neutre · démo</span><small style="display:block;margin-top:8px">Surveiller : RBA, emploi, Chine, matières premières.</small></div>
-  <div class="bank"><b>Reserve Bank of New Zealand · NZD</b><div class="rate">3.50%*</div><span class="tag red">Dovish · démo</span><small style="display:block;margin-top:8px">Surveiller : OCR, inflation, activité.</small></div>
-  <div class="bank"><b>Swiss National Bank · CHF</b><div class="rate">0.25%*</div><span class="tag yellow">Neutre · démo</span><small style="display:block;margin-top:8px">Surveiller : taux, inflation, franc refuge.</small></div>
+  <div class="bank"><b>Federal Reserve · USD</b><div class="rate bank-rate" data-ccy="USD">…</div><span class="tag yellow bank-tag" data-ccy="USD">…</span><small style="display:block;margin-top:8px">Surveiller : FOMC, dot plot, Powell, minutes.</small></div>
+  <div class="bank"><b>ECB / BCE · EUR</b><div class="rate bank-rate" data-ccy="EUR">…</div><span class="tag yellow bank-tag" data-ccy="EUR">…</span><small style="display:block;margin-top:8px">Surveiller : décision, conférence, Lagarde.</small></div>
+  <div class="bank"><b>Bank of England · GBP</b><div class="rate bank-rate" data-ccy="GBP">…</div><span class="tag yellow bank-tag" data-ccy="GBP">…</span><small style="display:block;margin-top:8px">Surveiller : vote MPC, minutes, inflation.</small></div>
+  <div class="bank"><b>Bank of Japan · JPY</b><div class="rate bank-rate" data-ccy="JPY">…</div><span class="tag yellow bank-tag" data-ccy="JPY">…</span><small style="display:block;margin-top:8px">Surveiller : politique, salaires, yen.</small></div>
+  <div class="bank"><b>Bank of Canada · CAD</b><div class="rate bank-rate" data-ccy="CAD">…</div><span class="tag yellow bank-tag" data-ccy="CAD">…</span><small style="display:block;margin-top:8px">Surveiller : taux, inflation, emploi, pétrole.</small></div>
+  <div class="bank"><b>Reserve Bank of Australia · AUD</b><div class="rate bank-rate" data-ccy="AUD">…</div><span class="tag yellow bank-tag" data-ccy="AUD">…</span><small style="display:block;margin-top:8px">Surveiller : RBA, emploi, Chine, matières premières.</small></div>
+  <div class="bank"><b>Reserve Bank of New Zealand · NZD</b><div class="rate bank-rate" data-ccy="NZD">…</div><span class="tag yellow bank-tag" data-ccy="NZD">…</span><small style="display:block;margin-top:8px">Surveiller : OCR, inflation, activité.</small></div>
+  <div class="bank"><b>Swiss National Bank · CHF</b><div class="rate bank-rate" data-ccy="CHF">…</div><span class="tag yellow bank-tag" data-ccy="CHF">…</span><small style="display:block;margin-top:8px">Surveiller : taux, inflation, franc refuge.</small></div>
  </div>
  <div class="notice">Avant d'utiliser le tableau en réel, vérifier chaque décision et déclaration sur le site officiel de la banque centrale concernée.</div>
 </section>
@@ -86,38 +84,9 @@
  <p class="smallmuted">Ce n'est pas un calendrier daté en direct. Ajoute ensuite une source/API de calendrier économique fiable pour afficher les heures et chiffres actuels.</p>
 </section>
  <section class="section" id="pairs">
-  <div class="section-head"><div><h2>Forex Pair Setups · 28 paires</h2><p>Les 28 combinaisons uniques des 8 devises. Scores ci-dessous calculés à partir des scores fictifs affichés plus haut : ce ne sont pas des signaux live.</p></div></div>
-  <div class="tablewrap"><table><thead><tr><th>Paire</th><th>Score devise A*</th><th>Score devise B*</th><th>Écart A − B*</th><th>Biais indicatif</th><th>Signal démo</th></tr></thead><tbody>
-  <tr><td><b>USD/EUR</b></td><td>+7.8</td><td>+2.1</td><td>+5.7</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Buy</span></td></tr>
-  <tr><td><b>USD/GBP</b></td><td>+7.8</td><td>+4.0</td><td>+3.8</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Weak Buy</span></td></tr>
-  <tr><td><b>USD/JPY</b></td><td>+7.8</td><td>-5.1</td><td>+12.9</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Strong Buy</span></td></tr>
-  <tr><td><b>USD/CAD</b></td><td>+7.8</td><td>+1.3</td><td>+6.5</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Buy</span></td></tr>
-  <tr><td><b>USD/AUD</b></td><td>+7.8</td><td>+0.8</td><td>+7.0</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Buy</span></td></tr>
-  <tr><td><b>USD/NZD</b></td><td>+7.8</td><td>-1.8</td><td>+9.6</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Strong Buy</span></td></tr>
-  <tr><td><b>USD/CHF</b></td><td>+7.8</td><td>+2.5</td><td>+5.3</td><td><span class="tag green">USD dominant</span></td><td><span class="tag green">Buy</span></td></tr>
-  <tr><td><b>EUR/GBP</b></td><td>+2.1</td><td>+4.0</td><td>-1.9</td><td><span class="tag yellow">GBP dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
-  <tr><td><b>EUR/JPY</b></td><td>+2.1</td><td>-5.1</td><td>+7.2</td><td><span class="tag green">EUR dominant</span></td><td><span class="tag green">Buy</span></td></tr>
-  <tr><td><b>EUR/CAD</b></td><td>+2.1</td><td>+1.3</td><td>+0.8</td><td><span class="tag yellow">EUR dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
-  <tr><td><b>EUR/AUD</b></td><td>+2.1</td><td>+0.8</td><td>+1.3</td><td><span class="tag yellow">EUR dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
-  <tr><td><b>EUR/NZD</b></td><td>+2.1</td><td>-1.8</td><td>+3.9</td><td><span class="tag green">EUR dominant</span></td><td><span class="tag green">Weak Buy</span></td></tr>
-  <tr><td><b>EUR/CHF</b></td><td>+2.1</td><td>+2.5</td><td>-0.4</td><td><span class="tag yellow">CHF dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
-  <tr><td><b>GBP/JPY</b></td><td>+4.0</td><td>-5.1</td><td>+9.1</td><td><span class="tag green">GBP dominant</span></td><td><span class="tag green">Strong Buy</span></td></tr>
-  <tr><td><b>GBP/CAD</b></td><td>+4.0</td><td>+1.3</td><td>+2.7</td><td><span class="tag green">GBP dominant</span></td><td><span class="tag green">Weak Buy</span></td></tr>
-  <tr><td><b>GBP/AUD</b></td><td>+4.0</td><td>+0.8</td><td>+3.2</td><td><span class="tag green">GBP dominant</span></td><td><span class="tag green">Weak Buy</span></td></tr>
-  <tr><td><b>GBP/NZD</b></td><td>+4.0</td><td>-1.8</td><td>+5.8</td><td><span class="tag green">GBP dominant</span></td><td><span class="tag green">Buy</span></td></tr>
-  <tr><td><b>GBP/CHF</b></td><td>+4.0</td><td>+2.5</td><td>+1.5</td><td><span class="tag yellow">GBP dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
-  <tr><td><b>JPY/CAD</b></td><td>-5.1</td><td>+1.3</td><td>-6.4</td><td><span class="tag red">CAD dominant</span></td><td><span class="tag red">Sell</span></td></tr>
-  <tr><td><b>JPY/AUD</b></td><td>-5.1</td><td>+0.8</td><td>-5.9</td><td><span class="tag red">AUD dominant</span></td><td><span class="tag red">Sell</span></td></tr>
-  <tr><td><b>JPY/NZD</b></td><td>-5.1</td><td>-1.8</td><td>-3.3</td><td><span class="tag red">NZD dominant</span></td><td><span class="tag red">Weak Sell</span></td></tr>
-  <tr><td><b>JPY/CHF</b></td><td>-5.1</td><td>+2.5</td><td>-7.6</td><td><span class="tag red">CHF dominant</span></td><td><span class="tag red">Sell</span></td></tr>
-  <tr><td><b>CAD/AUD</b></td><td>+1.3</td><td>+0.8</td><td>+0.5</td><td><span class="tag yellow">CAD dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
-  <tr><td><b>CAD/NZD</b></td><td>+1.3</td><td>-1.8</td><td>+3.1</td><td><span class="tag green">CAD dominant</span></td><td><span class="tag green">Weak Buy</span></td></tr>
-  <tr><td><b>CAD/CHF</b></td><td>+1.3</td><td>+2.5</td><td>-1.2</td><td><span class="tag yellow">CHF dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
-  <tr><td><b>AUD/NZD</b></td><td>+0.8</td><td>-1.8</td><td>+2.6</td><td><span class="tag green">AUD dominant</span></td><td><span class="tag green">Weak Buy</span></td></tr>
-  <tr><td><b>AUD/CHF</b></td><td>+0.8</td><td>+2.5</td><td>-1.7</td><td><span class="tag yellow">CHF dominant</span></td><td><span class="tag yellow">Neutral</span></td></tr>
-  <tr><td><b>NZD/CHF</b></td><td>-1.8</td><td>+2.5</td><td>-4.3</td><td><span class="tag red">CHF dominant</span></td><td><span class="tag red">Weak Sell</span></td></tr>
-  </tbody></table></div>
-  <div class="notice">* Les scores et signaux sont purement illustratifs, dérivés des scores de démonstration de cette maquette. Ils ne sont pas calculés à partir de données fondamentales actuelles et ne doivent pas être utilisés pour trader.</div>
+  <div class="section-head"><div><h2>Forex Pair Setups · 28 paires</h2><p>Les 28 paires, avec les noms utilisés sur les plateformes (EUR/USD, GBP/JPY…). Le biais vient de l'écart entre les scores réels des deux devises. Ce n'est pas un signal d'entrée.</p></div></div>
+  <div class="tablewrap"><table><thead><tr><th>Paire</th><th>Score devise A</th><th>Score devise B</th><th>Écart A − B</th><th>Devise dominante</th><th>Biais fondamental</th></tr></thead><tbody id="pairBody"><tr><td colspan="6" class="smallmuted">Chargement…</td></tr></tbody></table></div>
+  <div class="notice">Le biais fondamental compare seulement les fondamentaux (taux, inflation, croissance, positionnement COT). Il ne tient pas compte du prix, de la technique, des nouvelles du jour, ni de la gestion du risque. Ne l'utilisez pas comme signal d'entrée sans confirmation.</div>
  </section>
  <section class="section" id="cot">
   <div class="section-head"><div><h2>Big Boys · Institutional Positioning (COT)</h2><p>Suivre le positionnement publié des grands groupes de traders sur les contrats futures.</p></div><a class="btn" href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm" target="_blank" rel="noopener noreferrer">Ouvrir le rapport officiel CFTC ↗</a></div>
@@ -133,14 +102,14 @@
 <section class="section" id="gold">
  <div class="section-head"><div><h2>Gold · XAU/USD Fundamentals</h2><p>L'or est analysé séparément : il ne fait pas partie des huit devises.</p></div></div>
  <div class="cards">
-  <div class="stat"><div class="stat-label">Taux réels US</div><div class="stat-value">À vérifier</div><div class="stat-foot">Des taux réels en hausse peuvent peser sur l'or.</div></div>
-  <div class="stat"><div class="stat-label">Dollar américain</div><div class="stat-value">À vérifier</div><div class="stat-foot">Un USD plus fort peut exercer une pression sur XAU/USD.</div></div>
+  <div class="stat"><div class="stat-label">Taux réel US (taux − inflation FMI)</div><div class="stat-value" id="goldReal">…</div><div class="stat-foot">Des taux réels en hausse peuvent peser sur l'or.</div></div>
+  <div class="stat"><div class="stat-label">Score du dollar américain</div><div class="stat-value" id="goldUsd">…</div><div class="stat-foot">Un USD plus fort peut exercer une pression sur XAU/USD.</div></div>
   <div class="stat"><div class="stat-label">Risque géopolitique</div><div class="stat-value">À surveiller</div><div class="stat-foot">La demande de valeur refuge peut soutenir l'or.</div></div>
-  <div class="stat"><div class="stat-label">Banques centrales</div><div class="stat-value">À vérifier</div><div class="stat-foot">Les achats officiels et les flux ETF peuvent compter.</div></div>
+  <div class="stat"><div class="stat-label">COT or (Managed Money)</div><div class="stat-value" id="goldCot">…</div><div class="stat-foot" id="goldCotFoot">Net et variation hebdomadaire.</div></div>
  </div>
- <div class="notice">Aucun signal d'achat/vente live n'est calculé ici. Pour une analyse fiable, il faut intégrer des données actuelles sourcées, leur heure de mise à jour et les surprises par rapport aux prévisions.</div>
+ <div class="notice">Aucun signal d'achat/vente n'est calculé ici. Pour une analyse fiable, il faut intégrer des données actuelles sourcées, leur heure de mise à jour et les surprises par rapport aux prévisions.</div>
 </section>
-<div class="footer">FUNDAMENTAL FX DESK · Maquette de structure · Les données et signaux de démonstration ne sont pas des données live. COT non connecté : consulter la CFTC et vérifier les sources officielles avant toute décision financière.</div>
+<div class="footer">FUNDAMENTAL FX DESK · Taux : Fed, BCE, Bank of Canada, BIS · Inflation/PIB : FMI (annuel) · COT : CFTC. Le calendrier économique reste à connecter. Outil d'analyse, pas un conseil financier.</div>
 </main></div>
 <script>
 document.getElementById('date').textContent = new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'});
@@ -204,6 +173,56 @@ function filterRows(){const q=document.getElementById('filter').value.toLowerCas
   });
   put('.macro-cpi','inflation');put('.macro-gdp','gdp_growth');
  }catch(e){fill('.macro-cpi','Indisponible');fill('.macro-gdp','Indisponible');}
+})();
+
+(async function(){
+ const J=async u=>{const r=await fetch(u+'?ts='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error(u+' ('+r.status+')');return r.json();};
+ const CC=['USD','EUR','GBP','JPY','CAD','AUD','NZD','CHF'],$=id=>document.getElementById(id);
+ const sg=n=>(n>0?'+':n<0?'−':'')+Math.abs(n).toFixed(1),cls=n=>n>0?'up':n<0?'down':'';
+ const all=sel=>document.querySelectorAll(sel);
+ const unavailable=()=>{all('.realcell,.scorecell,.forcecell,.bank-rate').forEach(e=>{e.textContent='n/d';e.className+=' smallmuted';});};
+ try{
+  const [R,M,C]=await Promise.all([J('data/official-rates.json'),J('data/macro.json'),J('data/cot.json')]);
+  const rate={},rdate={},cpi={},gdp={},cot={};
+  (R.rates||[]).forEach(x=>{rate[x.currency]=x.value_percent;rdate[x.currency]=x.observation_date;});
+  (M.areas||[]).forEach(a=>{cpi[a.currency]=a.inflation.value;gdp[a.currency]=a.gdp_growth.value;});
+  (C.markets||[]).forEach(m=>{if(m.open_interest)cot[m.currency]=m.net/m.open_interest*100;});
+  $('dataHealth').textContent=(R.coverage?.verified??0)+'/8 · '+(M.coverage?.verified??0)+'/8 · '+(C.coverage?.verified??0)+'/9';
+  // banks monitor (real rates, real rate vs inflation)
+  all('.bank-rate').forEach(e=>{const c=e.dataset.ccy;e.textContent=rate[c]!=null?rate[c].toFixed(2)+'%':'n/d';});
+  all('.bank-tag').forEach(e=>{const c=e.dataset.ccy;if(rate[c]==null||cpi[c]==null){e.textContent='Taux réel n/d';return;}const re=rate[c]-cpi[c];e.textContent='Taux réel '+sg(re)+'%';e.className='tag bank-tag '+(re>0.5?'green':re<-0.5?'red':'yellow');e.title='Taux directeur '+rdate[c]+' moins inflation FMI '+M.year;});
+  const ok=CC.filter(c=>rate[c]!=null&&cpi[c]!=null&&gdp[c]!=null&&cot[c]!=null);
+  if(ok.length<4){unavailable();$('topStrong').textContent='n/d';$('topWeak').textContent='n/d';$('topPair').textContent='n/d';$('heatmapGrid').textContent='Scores indisponibles : données insuffisantes.';$('pairBody').innerHTML='<tr><td colspan="6" class="smallmuted">Données insuffisantes.</td></tr>';return;}
+  const W={rate:.35,real:.25,gdp:.25,cot:.15};
+  const F={rate:c=>rate[c],real:c=>rate[c]-cpi[c],gdp:c=>gdp[c],cot:c=>cot[c]};
+  const Z={};for(const k in F){const v=ok.map(F[k]),m=v.reduce((a,b)=>a+b,0)/v.length,sd=Math.sqrt(v.reduce((a,b)=>a+(b-m)**2,0)/v.length)||1;Z[k]={};ok.forEach((c,i)=>Z[k][c]=Math.max(-2,Math.min(2,(v[i]-m)/sd)));}
+  const S={};ok.forEach(c=>S[c]=5*Object.keys(W).reduce((a,k)=>a+W[k]*Z[k][c],0));
+  const label=s=>s>=3?'Forte':s<=-3?'Faible':'Moyenne';
+  // table cells
+  all('.realcell').forEach(e=>{const c=e.dataset.ccy;if(rate[c]==null||cpi[c]==null){e.textContent='n/d';return;}const v=rate[c]-cpi[c];e.textContent=sg(v)+'%';e.className='realcell '+cls(v);});
+  all('.scorecell').forEach(e=>{const c=e.dataset.ccy;if(S[c]==null){e.textContent='n/d';return;}e.textContent=sg(S[c]);e.className='scorecell '+cls(S[c]);e.title='Taux '+sg(Z.rate[c])+' · Taux réel '+sg(Z.real[c])+' · PIB '+sg(Z.gdp[c])+' · COT '+sg(Z.cot[c])+' (écarts-types)';});
+  all('.forcecell').forEach(e=>{const c=e.dataset.ccy;e.textContent='';if(S[c]==null){e.textContent='n/d';return;}const bar=document.createElement('span'),inner=document.createElement('span');bar.className='bar'+(S[c]<0?' negative':'');inner.style.width=Math.round((S[c]+10)/20*100)+'%';bar.append(inner);e.append(bar,' '+label(S[c]));});
+  // heatmap
+  const hg=$('heatmapGrid');hg.textContent='';
+  [...ok].sort((a,b)=>S[b]-S[a]).forEach(c=>{const d=document.createElement('div');d.className='heat '+(S[c]>=1.5?'pos':S[c]<=-1.5?'neg':'mid');const st=document.createElement('strong'),sm=document.createElement('small');st.textContent=c;sm.textContent=sg(S[c])+' · '+label(S[c]);d.append(st,sm);hg.append(d);});
+  const top=[...ok].sort((a,b)=>S[b]-S[a]);
+  $('topStrong').innerHTML='';$('topStrong').append(top[0]+' ');let sp=document.createElement('span');sp.style.fontSize='13px';sp.textContent=sg(S[top[0]]);$('topStrong').append(sp);
+  $('topWeak').innerHTML='';$('topWeak').append(top[top.length-1]+' ');sp=document.createElement('span');sp.style.fontSize='13px';sp.textContent=sg(S[top[top.length-1]]);$('topWeak').append(sp);
+  // pairs (market naming)
+  const PAIRS=['EUR/USD','GBP/USD','USD/JPY','USD/CAD','AUD/USD','NZD/USD','USD/CHF','EUR/GBP','EUR/JPY','EUR/CAD','EUR/AUD','EUR/NZD','EUR/CHF','GBP/JPY','GBP/CAD','GBP/AUD','GBP/NZD','GBP/CHF','CAD/JPY','AUD/JPY','NZD/JPY','CHF/JPY','AUD/CAD','NZD/CAD','CAD/CHF','AUD/NZD','AUD/CHF','NZD/CHF'];
+  const pb=$('pairBody');pb.textContent='';let best=null;
+  PAIRS.forEach(p=>{const [A,B]=p.split('/');if(S[A]==null||S[B]==null)return;const d=S[A]-S[B];if(!best||Math.abs(d)>Math.abs(best.d))best={p,d};
+   const tr=document.createElement('tr'),cell=(t,c)=>{const td=document.createElement('td');if(t instanceof Node)td.append(t);else td.textContent=t;if(c)td.className=c;tr.append(td);return td;};
+   const b=document.createElement('b');b.textContent=p;cell(b);cell(sg(S[A]),cls(S[A]));cell(sg(S[B]),cls(S[B]));cell(sg(d),cls(d));
+   cell(Math.abs(d)<1?'Aucune':(d>0?A:B));
+   const tag=document.createElement('span'),a=Math.abs(d);tag.className='tag '+(a<3?'yellow':d>0?'green':'red');tag.textContent=a<3?'Neutre':(d>0?'Haussier ':'Baissier ')+(a>=6?'fort':'modéré');cell(tag);pb.append(tr);});
+  if(best){$('topPair').textContent=best.p;$('topPairFoot').textContent='Écart '+sg(best.d)+' ('+(best.d>0?'biais haussier':'biais baissier')+' fondamental)';}
+  // gold block
+  if(rate.USD!=null&&cpi.USD!=null){$('goldReal').textContent=sg(rate.USD-cpi.USD)+'%';}else $('goldReal').textContent='n/d';
+  $('goldUsd').textContent=S.USD!=null?sg(S.USD):'n/d';
+  const g=(C.markets||[]).find(m=>m.currency==='XAU');
+  if(g){$('goldCot').textContent=(g.net>0?'+':g.net<0?'−':'')+Math.abs(g.net).toLocaleString('fr-FR');$('goldCotFoot').textContent='Variation hebdo : '+(g.net_change>0?'+':g.net_change<0?'−':'')+Math.abs(g.net_change).toLocaleString('fr-FR')+' · rapport du '+g.report_date;}else $('goldCot').textContent='n/d';
+ }catch(e){unavailable();const m=document.getElementById('heatmapGrid');if(m)m.textContent='Scores indisponibles : '+e.message;const pb=document.getElementById('pairBody');if(pb)pb.innerHTML='<tr><td colspan="6" class="smallmuted">Données indisponibles.</td></tr>';}
 })();
 document.querySelectorAll('.nav').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));a.classList.add('active')}));
 </script>
