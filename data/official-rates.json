@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-12T00:46:30Z",
-  "note": "Only validated observations are listed. Missing currencies appear in source_errors.",
+  "generated_at_utc": "2026-10-12T02:49:22Z",
+  "note": "Only validated observations are listed. Missing currencies appear in source_errors. bias = direction of the policy rate over ~6 months (hawkish: +0.25 or more, dovish: -0.25 or less), not the tone of central bank statements.",
   "coverage": {
     "total_currencies": 8,
     "verified": 8,
@@ -15,7 +15,10 @@
       "value_percent": 4.0,
       "observation_date": "2026-10-11",
       "source_url": "https://www.federalreserve.gov/monetarypolicy.htm",
-      "origin": "FRED / Board of Governors"
+      "origin": "FRED / Board of Governors",
+      "value_6m_ago": 3.75,
+      "change_6m": 0.25,
+      "bias": "hawkish"
     },
     {
       "currency": "EUR",
@@ -24,7 +27,10 @@
       "value_percent": 2.5,
       "observation_date": "2026-10-12",
       "source_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
-      "origin": "ECB Data Portal"
+      "origin": "ECB Data Portal",
+      "value_6m_ago": 2.0,
+      "change_6m": 0.5,
+      "bias": "hawkish"
     },
     {
       "currency": "CAD",
@@ -33,7 +39,10 @@
       "value_percent": 2.25,
       "observation_date": "2026-10-08",
       "source_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/",
-      "origin": "Bank of Canada Valet API"
+      "origin": "Bank of Canada Valet API",
+      "value_6m_ago": 2.25,
+      "change_6m": 0.0,
+      "bias": "neutral"
     },
     {
       "currency": "GBP",
@@ -42,7 +51,10 @@
       "value_percent": 3.75,
       "observation_date": "2026-10-05",
       "source_url": "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
-      "origin": "BIS central bank policy rates (secondary source)"
+      "origin": "BIS central bank policy rates (secondary source)",
+      "value_6m_ago": 3.75,
+      "change_6m": 0.0,
+      "bias": "neutral"
     },
     {
       "currency": "JPY",
@@ -51,7 +63,10 @@
       "value_percent": 1.25,
       "observation_date": "2026-10-06",
       "source_url": "https://www.boj.or.jp/en/mopo/",
-      "origin": "BIS central bank policy rates (secondary source)"
+      "origin": "BIS central bank policy rates (secondary source)",
+      "value_6m_ago": 0.75,
+      "change_6m": 0.5,
+      "bias": "hawkish"
     },
     {
       "currency": "AUD",
@@ -60,7 +75,10 @@
       "value_percent": 4.35,
       "observation_date": "2026-09-24",
       "source_url": "https://www.rba.gov.au/statistics/cash-rate/",
-      "origin": "BIS central bank policy rates (secondary source)"
+      "origin": "BIS central bank policy rates (secondary source)",
+      "value_6m_ago": 4.1,
+      "change_6m": 0.25,
+      "bias": "hawkish"
     },
     {
       "currency": "NZD",
@@ -69,7 +87,10 @@
       "value_percent": 2.75,
       "observation_date": "2026-10-02",
       "source_url": "https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate",
-      "origin": "BIS central bank policy rates (secondary source)"
+      "origin": "BIS central bank policy rates (secondary source)",
+      "value_6m_ago": 2.25,
+      "change_6m": 0.5,
+      "bias": "hawkish"
     },
     {
       "currency": "CHF",
@@ -78,7 +99,10 @@
       "value_percent": 0.0,
       "observation_date": "2026-10-06",
       "source_url": "https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy/decisions",
-      "origin": "BIS central bank policy rates (secondary source)"
+      "origin": "BIS central bank policy rates (secondary source)",
+      "value_6m_ago": 0.0,
+      "change_6m": 0.0,
+      "bias": "neutral"
     }
   ],
   "source_errors": []
