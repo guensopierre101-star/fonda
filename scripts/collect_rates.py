@@ -11,7 +11,7 @@ import json
 import os
 import sys
 import urllib.request
-from datetime import datetime, timezone, date
+from datetime import datetime, timezone, date, timedelta
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "official-rates.json")
 UA = {"User-Agent": "fonda-fx-desk/1.0 (+https://github.com/guensopierre101-star/fonda)"}
@@ -64,6 +64,90 @@ def bis(area):
     return _BIS[area]
 
 
+
+# ---- history (for the 6-month rate direction used as hawkish/dovish bias) ----
+HIST_DAYS = 400          # window fetched
+BIAS_DAYS = 180          # compare today's rate with the rate ~6 months ago
+BIAS_STEP = 0.25         # one standard policy step; smaller moves count as neutral
+
+
+def csv_points(text, date_col, value_col):
+    pts = []
+    for row in csv.DictReader(io.StringIO(text)):
+        v = (row.get(value_col) or "").strip()
+        if v and v != ".":
+            pts.append((row[date_col].strip()[:10], float(v)))
+    return sorted(pts)
+
+
+def start_date():
+    return (datetime.now(timezone.utc).date() - timedelta(days=HIST_DAYS)).isoformat()
+
+
+def fred_hist(series):
+    text = get(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series}")
+    col = "observation_date" if "observation_date" in text.splitlines()[0] else "DATE"
+    return csv_points(text, col, series)
+
+
+def ecb_hist():
+    url = ("https://data-api.ecb.europa.eu/service/data/FM/D.U2.EUR.4F.KR.DFR.LEV"
+           f"?startPeriod={start_date()}&format=csvdata")
+    return csv_points(get(url), "TIME_PERIOD", "OBS_VALUE")
+
+
+def boc_hist():
+    d = json.loads(get("https://www.bankofcanada.ca/valet/observations/V39079/json"
+                       f"?start_date={start_date()}"))
+    return sorted((o["d"], float(o["V39079"]["v"])) for o in d["observations"]
+                  if o.get("V39079", {}).get("v") not in (None, ""))
+
+
+_BIS_H = {}
+
+
+def bis_hist(area):
+    if not _BIS_H:
+        url = ("https://stats.bis.org/api/v2/data/dataflow/BIS/WS_CBPOL/1.0/"
+               f"D.GB+JP+AU+NZ+CH?startPeriod={start_date()}&format=csv")
+        for row in csv.DictReader(io.StringIO(get(url))):
+            _BIS_H.setdefault(row["REF_AREA"], []).append(
+                (row["TIME_PERIOD"][:10], float(row["OBS_VALUE"])))
+        for k in _BIS_H:
+            _BIS_H[k].sort()
+    if area not in _BIS_H:
+        raise ValueError(f"no BIS history for {area}")
+    return _BIS_H[area]
+
+
+HISTORY = {
+    "USD": lambda: fred_hist("DFEDTARU"),
+    "EUR": ecb_hist,
+    "CAD": boc_hist,
+    "GBP": lambda: bis_hist("GB"),
+    "JPY": lambda: bis_hist("JP"),
+    "AUD": lambda: bis_hist("AU"),
+    "NZD": lambda: bis_hist("NZ"),
+    "CHF": lambda: bis_hist("CH"),
+}
+
+
+def value_at(points, target):
+    """Rate in force on `target` (last observation on or before it); None if unknown."""
+    prior = [v for d, v in points if d <= target]
+    return prior[-1] if prior else None
+
+
+def bias_from_change(change):
+    if change is None:
+        return None
+    if change >= BIAS_STEP:
+        return "hawkish"
+    if change <= -BIAS_STEP:
+        return "dovish"
+    return "neutral"
+
+
 # currency, bank, indicator, official page, fetcher, max age (days), origin label
 SOURCES = [
     ("USD", "Federal Reserve", "Fed funds target range (upper bound)",
@@ -96,11 +180,22 @@ def main():
                 raise ValueError(f"value out of plausible range: {value}")
             if age > max_age:
                 raise ValueError(f"observation too old ({age} days, limit {max_age})")
-            rates.append({
+            entry = {
                 "currency": ccy, "central_bank": bank, "indicator": indicator,
                 "value_percent": value, "observation_date": obs_date[:10],
                 "source_url": page, "origin": origin,
-            })
+                "value_6m_ago": None, "change_6m": None, "bias": None,
+            }
+            try:  # history is optional: if it fails the rate is still published, bias stays null
+                target = (now.date() - timedelta(days=BIAS_DAYS)).isoformat()
+                past = value_at(HISTORY[ccy](), target)
+                if past is not None and -1.0 <= past <= 25.0:
+                    entry["value_6m_ago"] = past
+                    entry["change_6m"] = round(value - past, 4)
+                    entry["bias"] = bias_from_change(entry["change_6m"])
+            except Exception as e:  # noqa: BLE001
+                entry["history_error"] = f"{type(e).__name__}: {e}"
+            rates.append(entry)
         except Exception as e:  # noqa: BLE001 - report every failure, never guess
             errors.append({
                 "currency": ccy, "central_bank": bank, "source_url": page,
@@ -109,7 +204,7 @@ def main():
     out = {
         "schema_version": 1,
         "generated_at_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "note": "Only validated observations are listed. Missing currencies appear in source_errors.",
+        "note": "Only validated observations are listed. Missing currencies appear in source_errors. bias = direction of the policy rate over ~6 months (hawkish: +0.25 or more, dovish: -0.25 or less), not the tone of central bank statements.",
         "coverage": {"total_currencies": len(SOURCES), "verified": len(rates), "unavailable": len(errors)},
         "rates": rates,
         "source_errors": errors,
