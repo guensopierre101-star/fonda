@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-13T00:24:57Z",
+  "generated_at_utc": "2026-10-13T00:26:26Z",
   "note": "Only validated observations are listed. Missing currencies appear in source_errors. bias = direction of the policy rate over ~6 months (hawkish: +0.25 or more, dovish: -0.25 or less), not the tone of central bank statements.",
   "coverage": {
     "total_currencies": 8,
@@ -99,7 +99,7 @@
       "central_bank": "Reserve Bank of Australia",
       "source_url": "https://www.rba.gov.au/statistics/cash-rate/",
       "status": "unavailable",
-      "error": "ValueError: no cash rate observations parsed from RBA table F1.1; idx=1; rows=9998; sample=[['Source', 'RBA', 'RBA', '..', 'RBA'], ['Publication date', '01-Oct-2026', '01-Oct-2026', '..', '01-Oct-2026'], ['Series ID', 'FIRMMCRT', 'FIRMMCRI', '..', 'FIRMMCRT'], ['30/06/1969', '', '', '..', ''], ['31/07/1969', '', '', '..', ''], ['31/08/1969', '', '', '..', '']]"
+      "error": "ValueError: series FIRMMCRT not found in RBA table F1"
     }
   ]
 }
