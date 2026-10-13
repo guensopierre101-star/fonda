@@ -70,31 +70,39 @@ _RBA = []
 
 
 def rba_points():
-    """Cash rate target from the RBA's own statistical table F1.1 (series FIRMMCRT)."""
+    """Cash rate target from the RBA's own statistical table F1, daily (series FIRMMCRT)."""
     if not _RBA:
-        raw = get("https://www.rba.gov.au/statistics/tables/csv/f1.1-data.csv")
+        raw = get("https://www.rba.gov.au/statistics/tables/csv/f1-data.csv")
         rows = list(csv.reader(io.StringIO(raw.lstrip("\ufeff"))))
         idx = None
         for row in rows:
             if row and row[0].strip().lower() == "series id":
                 if "FIRMMCRT" not in row:
-                    raise ValueError("series FIRMMCRT not found in RBA table F1.1")
+                    raise ValueError("series FIRMMCRT not found in RBA table F1")
                 idx = row.index("FIRMMCRT")
                 break
         if idx is None:
-            raise ValueError("'Series ID' row not found in RBA table F1.1")
+            raise ValueError("'Series ID' row not found in RBA table F1")
         for row in rows:
             if len(row) <= idx or not row[idx].strip():
                 continue
+            d = None
+            for fmt in ("%d-%b-%Y", "%d/%m/%Y"):
+                try:
+                    d = datetime.strptime(row[0].strip(), fmt).date().isoformat()
+                    break
+                except ValueError:
+                    pass
+            if d is None:
+                continue  # header/metadata rows
             try:
-                d = datetime.strptime(row[0].strip(), "%d-%b-%Y").date().isoformat()
                 _RBA.append((d, float(row[idx])))
             except ValueError:
-                continue  # header/metadata rows
+                continue
         _RBA.sort()
         if not _RBA:
             sample = [[c[:25] for c in r[:3]] + (["..", r[idx][:12]] if len(r) > idx else []) for r in rows[8:14]]
-            raise ValueError(f"no cash rate observations parsed from RBA table F1.1; idx={idx}; rows={len(rows)}; sample={sample}")
+            raise ValueError(f"no cash rate observations parsed from RBA table F1; idx={idx}; rows={len(rows)}; sample={sample}")
     return _RBA
 
 
@@ -199,7 +207,7 @@ SOURCES = [
     ("JPY", "Bank of Japan", "Policy rate (BIS)",
      "https://www.boj.or.jp/en/mopo/", lambda: bis("JP"), 14, "BIS central bank policy rates (secondary source)"),
     ("AUD", "Reserve Bank of Australia", "Cash rate target",
-     "https://www.rba.gov.au/statistics/cash-rate/", rba_latest, 14, "RBA statistical table F1.1"),
+     "https://www.rba.gov.au/statistics/cash-rate/", rba_latest, 14, "RBA statistical table F1 (daily)"),
     ("NZD", "Reserve Bank of New Zealand", "Policy rate (BIS)",
      "https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate", lambda: bis("NZ"), 14, "BIS central bank policy rates (secondary source)"),
     ("CHF", "Swiss National Bank", "Policy rate (BIS)",
