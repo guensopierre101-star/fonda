@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-13T00:26:26Z",
+  "generated_at_utc": "2026-10-13T00:27:42Z",
   "note": "Only validated observations are listed. Missing currencies appear in source_errors. bias = direction of the policy rate over ~6 months (hawkish: +0.25 or more, dovish: -0.25 or less), not the tone of central bank statements.",
   "coverage": {
     "total_currencies": 8,
-    "verified": 7,
-    "unavailable": 1
+    "verified": 8,
+    "unavailable": 0
   },
   "rates": [
     {
@@ -69,6 +69,18 @@
       "bias": "hawkish"
     },
     {
+      "currency": "AUD",
+      "central_bank": "Reserve Bank of Australia",
+      "indicator": "Cash rate target",
+      "value_percent": 4.6,
+      "observation_date": "2026-10-12",
+      "source_url": "https://www.rba.gov.au/statistics/cash-rate/",
+      "origin": "RBA statistical table F1 (daily)",
+      "value_6m_ago": 4.1,
+      "change_6m": 0.5,
+      "bias": "hawkish"
+    },
+    {
       "currency": "NZD",
       "central_bank": "Reserve Bank of New Zealand",
       "indicator": "Policy rate (BIS)",
@@ -93,13 +105,5 @@
       "bias": "neutral"
     }
   ],
-  "source_errors": [
-    {
-      "currency": "AUD",
-      "central_bank": "Reserve Bank of Australia",
-      "source_url": "https://www.rba.gov.au/statistics/cash-rate/",
-      "status": "unavailable",
-      "error": "ValueError: series FIRMMCRT not found in RBA table F1"
-    }
-  ]
+  "source_errors": []
 }
