@@ -61,7 +61,7 @@
  <div class="smallmuted" style="margin-top:12px;line-height:1.6"><b>Méthode.</b> Pour chaque indicateur, on compare les 8 devises entre elles (écart à la moyenne, limité à ±2 écarts-types), puis on pondère : taux directeur 35 % · taux réel (taux − inflation) 25 % · croissance du PIB 25 % · positionnement des Leveraged Funds en % de l'open interest (COT) 15 %. Résultat multiplié par 5 pour obtenir −10 à +10. C'est un classement <i>relatif</i> entre ces 8 devises, pas une prévision. Survolez un score dans le tableau pour voir le détail.</div></div>
  </section>
 <section class="section" id="banks">
- <div class="section-head"><div><h2>Central Banks Monitor</h2><p>Les décisions, déclarations et procès-verbaux influencent le biais fondamental.</p></div></div>
+ <div class="section-head"><div><h2>Central Banks Monitor</h2><p>Les décisions, déclarations et procès-verbaux influencent le biais fondamental.</p></div><div style="text-align:right"><a class="btn" id="toneUpdateBtn" style="display:inline-block;text-decoration:none;color:var(--text)" href="https://claude.ai/code/session_01SfdaW7sezYKE8wXeJBFvaw" target="_blank" rel="noopener noreferrer" title="Ouvre la session Claude de ce projet : écrivez « mets à jour les tons »">↻ Mettre à jour les tons avec Claude</a><div class="smallmuted" id="toneUpdated" style="margin-top:6px">Tons mis à jour : …</div></div></div>
  <div class="bankgrid">
   <div class="bank"><b>Federal Reserve · USD</b><div class="rate bank-rate" data-ccy="USD">…</div><span class="tag yellow bank-tag" data-ccy="USD">…</span> <span class="tag yellow bias-tag" data-ccy="USD">…</span> <span class="tag yellow tone-tag" data-ccy="USD">…</span><div class="bank-links smallmuted" data-ccy="USD" style="margin-top:8px;line-height:1.7"><a href="https://centralbank.watch/hawkometer/fed-hawkometer/" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">Hawkometer ↗ (2e avis)</a></div><small style="display:block;margin-top:8px">Surveiller : FOMC, dot plot, Powell, minutes.</small></div>
   <div class="bank"><b>ECB / BCE · EUR</b><div class="rate bank-rate" data-ccy="EUR">…</div><span class="tag yellow bank-tag" data-ccy="EUR">…</span> <span class="tag yellow bias-tag" data-ccy="EUR">…</span> <span class="tag yellow tone-tag" data-ccy="EUR">…</span><div class="bank-links smallmuted" data-ccy="EUR" style="margin-top:8px;line-height:1.7"><a href="https://centralbank.watch/hawkometer/ecb-hawkometer/" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">Hawkometer ↗ (2e avis)</a></div><small style="display:block;margin-top:8px">Surveiller : décision, conférence, Lagarde.</small></div>
@@ -268,6 +268,7 @@ function filterRows(){const q=document.getElementById('filter').value.toLowerCas
     e.append(sm);
    }
   });
+  const tu=document.getElementById('toneUpdated');if(tu)tu.textContent='Tons mis à jour le '+(d.updated_utc||'?')+' · mise à jour sur demande';
   all('.bank-links').forEach(el=>{
    const x=B[el.dataset.ccy];
    if(x&&x.source_url&&x.source_url.startsWith('https://')){
