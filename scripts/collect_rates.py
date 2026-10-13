@@ -77,9 +77,12 @@ def rba_points():
         idx = None
         for row in rows:
             if row and row[0].strip().lower() == "series id":
-                if "FIRMMCRT" not in row:
-                    raise ValueError("series FIRMMCRT not found in RBA table F1")
-                idx = row.index("FIRMMCRT")
+                for sid in ("FIRMMCRTD", "FIRMMCRT"):  # daily table uses the D suffix
+                    if sid in row:
+                        idx = row.index(sid)
+                        break
+                if idx is None:
+                    raise ValueError("cash rate target series not found in RBA table F1; ids=" + ",".join(c for c in row if c.startswith("FIRMMCR")))
                 break
         if idx is None:
             raise ValueError("'Series ID' row not found in RBA table F1")
