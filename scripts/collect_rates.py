@@ -93,7 +93,8 @@ def rba_points():
                 continue  # header/metadata rows
         _RBA.sort()
         if not _RBA:
-            raise ValueError("no cash rate observations parsed from RBA table F1.1")
+            sample = [[c[:25] for c in r[:3]] + (["..", r[idx][:12]] if len(r) > idx else []) for r in rows[8:14]]
+            raise ValueError(f"no cash rate observations parsed from RBA table F1.1; idx={idx}; rows={len(rows)}; sample={sample}")
     return _RBA
 
 
