@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "updated_utc": "2026-10-12",
+  "method": "Classement manuel (par Claude) à partir du dernier communiqué officiel de chaque banque : décision, vote, jugement sur l'inflation, risques et indications sur les taux futurs. C'est un jugement, pas une mesure automatique. À remettre à jour après chaque réunion.",
+  "banks": {
+    "USD": {
+      "tone": "hawkish",
+      "statement_date": "2026-09-16",
+      "decision": "Hausse de 0,25 pt à 3,75–4,00 %, vote 12–0",
+      "summary": "La Fed dit que l'inflation reste élevée et que la hausse doit la ramener plus vite à 2 %. Croissance solide, emploi stable. Pas d'indication explicite sur la suite.",
+      "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+    },
+    "GBP": {
+      "tone": "hawkish",
+      "statement_date": "2026-09-17",
+      "decision": "Taux maintenu à 3,75 %, vote 6–3 (3 voulaient une hausse)",
+      "summary": "La BoE voit les risques sur l'inflation orientés à la hausse (énergie, Moyen-Orient), prévoit une inflation autour de 3¾ % fin 2026 et se dit prête à agir. Trois membres voulaient déjà monter les taux.",
+      "source_url": "https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/september-2026"
+    },
+    "JPY": {
+      "tone": "hawkish",
+      "statement_date": "2026-09-18",
+      "decision": "Taux porté à 1,25 %, vote 7–2 (2 voulaient attendre)",
+      "summary": "La BoJ dit qu'elle continuera à relever son taux selon l'évolution de l'économie et des prix, car l'inflation sous-jacente approche 2 % et pourrait dépasser la cible. Deux membres trouvaient la hausse prématurée.",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260918a.pdf"
+    },
+    "NZD": {
+      "tone": "hawkish",
+      "statement_date": "2026-09-02",
+      "decision": "OCR relevé de 0,25 pt à 2,75 %, unanime",
+      "summary": "La RBNZ juge approprié de retirer progressivement le soutien monétaire et dit que l'OCR pourrait devoir monter encore, tout en notant des risques importants à la baisse pour l'activité.",
+      "source_url": "https://www.rbnz.govt.nz/news-and-events/news/2026/09/ocr-increased-by-25-basis-points-to-2-75"
+    },
+    "CAD": {
+      "tone": "neutral",
+      "statement_date": "2026-09-02",
+      "decision": "Taux maintenu à 2,25 %",
+      "summary": "La BoC voit une reprise de l'économie mais encore de la marge de capacité inutilisée, une inflation tirée surtout par l'essence et des risques des deux côtés (énergie, droits de douane). Aucune trajectoire annoncée.",
+      "source_url": "https://www.bankofcanada.ca/2026/09/fad-press-release-2026-09-02/"
+    },
+    "CHF": {
+      "tone": "neutral",
+      "statement_date": "2026-09-24",
+      "decision": "Taux maintenu à 0 %",
+      "summary": "La BNS juge sa politique adaptée : inflation prévue dans la zone de stabilité des prix (0,7–0,8 %), franc plus faible qui soutient l'économie, intervention sur le change possible. Aucune indication sur les taux.",
+      "source_url": "https://www.snb.ch/en/publications/communication/press-releases-restricted/pre_20260924"
+    },
+    "EUR": {
+      "tone": null,
+      "statement_date": null,
+      "summary": "Communiqué officiel de la BCE non lu pour l'instant : pas de classement plutôt qu'un classement deviné.",
+      "source_url": null
+    },
+    "AUD": {
+      "tone": null,
+      "statement_date": null,
+      "summary": "Communiqué officiel de la RBA non lu pour l'instant : pas de classement plutôt qu'un classement deviné.",
+      "source_url": null
+    }
+  }
+}
