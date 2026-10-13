@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-12T18:39:18Z",
+  "generated_at_utc": "2026-10-13T00:23:32Z",
   "note": "Only validated observations are listed. Missing currencies appear in source_errors. bias = direction of the policy rate over ~6 months (hawkish: +0.25 or more, dovish: -0.25 or less), not the tone of central bank statements.",
   "coverage": {
     "total_currencies": 8,
-    "verified": 8,
-    "unavailable": 0
+    "verified": 7,
+    "unavailable": 1
   },
   "rates": [
     {
@@ -25,7 +25,7 @@
       "central_bank": "European Central Bank",
       "indicator": "Deposit facility rate",
       "value_percent": 2.5,
-      "observation_date": "2026-10-12",
+      "observation_date": "2026-10-13",
       "source_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
       "origin": "ECB Data Portal",
       "value_6m_ago": 2.0,
@@ -69,18 +69,6 @@
       "bias": "hawkish"
     },
     {
-      "currency": "AUD",
-      "central_bank": "Reserve Bank of Australia",
-      "indicator": "Policy rate (BIS)",
-      "value_percent": 4.35,
-      "observation_date": "2026-09-24",
-      "source_url": "https://www.rba.gov.au/statistics/cash-rate/",
-      "origin": "BIS central bank policy rates (secondary source)",
-      "value_6m_ago": 4.1,
-      "change_6m": 0.25,
-      "bias": "hawkish"
-    },
-    {
       "currency": "NZD",
       "central_bank": "Reserve Bank of New Zealand",
       "indicator": "Policy rate (BIS)",
@@ -105,5 +93,13 @@
       "bias": "neutral"
     }
   ],
-  "source_errors": []
+  "source_errors": [
+    {
+      "currency": "AUD",
+      "central_bank": "Reserve Bank of Australia",
+      "source_url": "https://www.rba.gov.au/statistics/cash-rate/",
+      "status": "unavailable",
+      "error": "ValueError: no cash rate observations parsed from RBA table F1.1"
+    }
+  ]
 }
