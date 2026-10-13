@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-10-12",
+  "updated_utc": "2026-10-13",
   "method": "Classement manuel (par Claude) à partir du dernier communiqué officiel de chaque banque : décision, vote, jugement sur l'inflation, risques et indications sur les taux futurs. C'est un jugement, pas une mesure automatique. À remettre à jour après chaque réunion.",
   "banks": {
     "USD": {
@@ -46,16 +46,18 @@
       "source_url": "https://www.snb.ch/en/publications/communication/press-releases-restricted/pre_20260924"
     },
     "EUR": {
-      "tone": null,
-      "statement_date": null,
-      "summary": "Communiqué officiel de la BCE non lu pour l'instant : pas de classement plutôt qu'un classement deviné.",
-      "source_url": null
+      "tone": "hawkish",
+      "statement_date": "2026-09-10",
+      "decision": "Hausse de 0,25 pt : taux de dépôt à 2,50 % (en vigueur le 16 septembre)",
+      "summary": "La BCE dit que le conflit au Moyen-Orient maintient la pression sur les prix et que l'inflation restera nettement au-dessus de la cible pendant une période prolongée (3,0 % prévu en 2026). Risques à la hausse pour l'inflation, à la baisse pour la croissance. Elle décide réunion par réunion, sans s'engager sur une trajectoire de taux.",
+      "source_url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314e508016.en.html"
     },
     "AUD": {
-      "tone": null,
-      "statement_date": null,
-      "summary": "Communiqué officiel de la RBA non lu pour l'instant : pas de classement plutôt qu'un classement deviné.",
-      "source_url": null
+      "tone": "hawkish",
+      "statement_date": "2026-09-29",
+      "decision": "Hausse de 0,25 pt à 4,60 % (conférence de presse de la gouverneure ; la hausse a été préférée au maintien)",
+      "summary": "La RBA dit que la hausse est nécessaire pour ramener l'inflation à la cible, la demande intérieure dépassant l'offre. Pression des prix liée au Moyen-Orient et à l'investissement dans l'IA ; les entreprises s'attendent encore à de fortes hausses de coûts. Pas d'indication explicite sur la suite, mais la gouverneure dit que le Conseil relèvera encore les taux si nécessaire.",
+      "source_url": "https://www.rba.gov.au/speeches/2026/mc-gov-2026-09-29.html"
     }
   }
 }

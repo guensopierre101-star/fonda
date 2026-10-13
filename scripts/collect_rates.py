@@ -65,6 +65,43 @@ def bis(area):
 
 
 
+
+_RBA = []
+
+
+def rba_points():
+    """Cash rate target from the RBA's own statistical table F1.1 (series FIRMMCRT)."""
+    if not _RBA:
+        raw = get("https://www.rba.gov.au/statistics/tables/csv/f1.1-data.csv")
+        rows = list(csv.reader(io.StringIO(raw.lstrip("\ufeff"))))
+        idx = None
+        for row in rows:
+            if row and row[0].strip().lower() == "series id":
+                if "FIRMMCRT" not in row:
+                    raise ValueError("series FIRMMCRT not found in RBA table F1.1")
+                idx = row.index("FIRMMCRT")
+                break
+        if idx is None:
+            raise ValueError("'Series ID' row not found in RBA table F1.1")
+        for row in rows:
+            if len(row) <= idx or not row[idx].strip():
+                continue
+            try:
+                d = datetime.strptime(row[0].strip(), "%d-%b-%Y").date().isoformat()
+                _RBA.append((d, float(row[idx])))
+            except ValueError:
+                continue  # header/metadata rows
+        _RBA.sort()
+        if not _RBA:
+            raise ValueError("no cash rate observations parsed from RBA table F1.1")
+    return _RBA
+
+
+def rba_latest():
+    d, v = rba_points()[-1]
+    return d, v
+
+
 # ---- history (for the 6-month rate direction used as hawkish/dovish bias) ----
 HIST_DAYS = 400          # window fetched
 BIAS_DAYS = 180          # compare today's rate with the rate ~6 months ago
@@ -126,7 +163,7 @@ HISTORY = {
     "CAD": boc_hist,
     "GBP": lambda: bis_hist("GB"),
     "JPY": lambda: bis_hist("JP"),
-    "AUD": lambda: bis_hist("AU"),
+    "AUD": rba_points,
     "NZD": lambda: bis_hist("NZ"),
     "CHF": lambda: bis_hist("CH"),
 }
@@ -157,15 +194,15 @@ SOURCES = [
     ("CAD", "Bank of Canada", "Target for the overnight rate",
      "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/", boc_target, 14, "Bank of Canada Valet API"),
     ("GBP", "Bank of England", "Policy rate (BIS)",
-     "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate", lambda: bis("GB"), 45, "BIS central bank policy rates (secondary source)"),
+     "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate", lambda: bis("GB"), 14, "BIS central bank policy rates (secondary source)"),
     ("JPY", "Bank of Japan", "Policy rate (BIS)",
-     "https://www.boj.or.jp/en/mopo/", lambda: bis("JP"), 45, "BIS central bank policy rates (secondary source)"),
-    ("AUD", "Reserve Bank of Australia", "Policy rate (BIS)",
-     "https://www.rba.gov.au/statistics/cash-rate/", lambda: bis("AU"), 45, "BIS central bank policy rates (secondary source)"),
+     "https://www.boj.or.jp/en/mopo/", lambda: bis("JP"), 14, "BIS central bank policy rates (secondary source)"),
+    ("AUD", "Reserve Bank of Australia", "Cash rate target",
+     "https://www.rba.gov.au/statistics/cash-rate/", rba_latest, 14, "RBA statistical table F1.1"),
     ("NZD", "Reserve Bank of New Zealand", "Policy rate (BIS)",
-     "https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate", lambda: bis("NZ"), 45, "BIS central bank policy rates (secondary source)"),
+     "https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate", lambda: bis("NZ"), 14, "BIS central bank policy rates (secondary source)"),
     ("CHF", "Swiss National Bank", "Policy rate (BIS)",
-     "https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy/decisions", lambda: bis("CH"), 45, "BIS central bank policy rates (secondary source)"),
+     "https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy/decisions", lambda: bis("CH"), 14, "BIS central bank policy rates (secondary source)"),
 ]
 
 
