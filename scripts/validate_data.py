@@ -100,11 +100,38 @@ def check_macro():
     return n, total
 
 
+def check_tone():
+    """Validate the manually researched central-bank tone file and flag stale notes."""
+    d = json.loads((ROOT / "data/tone.json").read_text(encoding="utf-8"))
+    updated = date.fromisoformat(d["updated_utc"][:10])
+    if updated > TODAY:
+        raise ValueError("tone: updated_utc is in the future")
+    if (TODAY - updated).days > 14:
+        raise ValueError(f"tone: manual review is stale ({(TODAY - updated).days} days old)")
+    banks = d.get("banks", {})
+    required = {"USD", "EUR", "GBP", "JPY", "CAD", "AUD", "NZD", "CHF"}
+    missing = required - set(banks)
+    if missing:
+        raise ValueError("tone: missing currencies " + ", ".join(sorted(missing)))
+    for ccy, item in banks.items():
+        if item.get("tone") not in {"hawkish", "neutral", "dovish"}:
+            raise ValueError(f"tone: invalid tone label for {ccy}")
+        statement = date.fromisoformat(item["statement_date"][:10])
+        if statement > TODAY:
+            raise ValueError(f"tone: future statement date for {ccy}")
+        if not item.get("source_url", "").startswith("https://"):
+            raise ValueError(f"tone: missing HTTPS source URL for {ccy}")
+        if not item.get("summary", "").strip() or not item.get("decision", "").strip():
+            raise ValueError(f"tone: missing summary/decision for {ccy}")
+    print(f"PASS Tone: {len(banks)} currencies; manual review age {(TODAY - updated).days} days")
+
+
 def main():
     try:
         results = [("Rates", check_rates()), ("COT", check_cot()), ("Macro", check_macro())]
         for label, (n, total) in results:
             print(f"PASS {label}: {n} valid entries" + (f" / {total}" if total else ""))
+        check_tone()
     except Exception as e:
         print(f"DATA VALIDATION FAILED: {e}", file=sys.stderr)
         raise SystemExit(1)
