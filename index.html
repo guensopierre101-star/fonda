@@ -217,7 +217,7 @@ function filterRows(){const q=document.getElementById('filter').value.toLowerCas
   const pb=$('pairBody');pb.textContent='';let best=null;
   PAIRS.forEach(p=>{const [A,B]=p.split('/');if(S[A]==null||S[B]==null)return;const d=S[A]-S[B];if(!best||Math.abs(d)>Math.abs(best.d))best={p,d};
    const tr=document.createElement('tr'),cell=(t,c)=>{const td=document.createElement('td');if(t instanceof Node)td.append(t);else td.textContent=t;if(c)td.className=c;tr.append(td);return td;};
-   const b=document.createElement('b');b.textContent=p;cell(b);cell(sg(S[A]),cls(S[A]));cell(sg(S[B]),cls(S[B]));cell(sg(d),cls(d));
+   const link=document.createElement('a');link.textContent=p;link.href='https://www.tradingview.com/chart/?symbol='+encodeURIComponent('FX:'+A+B);link.target='_blank';link.rel='noopener noreferrer';link.title='Ouvrir '+p+' sur TradingView';link.style.color='inherit';link.style.fontWeight='700';link.style.textDecoration='underline';cell(link);cell(sg(S[A]),cls(S[A]));cell(sg(S[B]),cls(S[B]));cell(sg(d),cls(d));
    cell(Math.abs(d)<1?'Aucune':(d>0?A:B));
    const tag=document.createElement('span'),a=Math.abs(d);tag.className='tag '+(a<3?'yellow':d>0?'green':'red');tag.textContent=a<3?'Neutre':(d>0?'Haussier ':'Baissier ')+(a>=6?'fort':'modéré');cell(tag);pb.append(tr);});
   if(best){$('topPair').textContent=best.p;$('topPairFoot').textContent='Écart '+sg(best.d)+' ('+(best.d>0?'biais haussier':'biais baissier')+' fondamental)';}
