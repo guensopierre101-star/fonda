@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-18T06:55:36Z",
+  "generated_at_utc": "2026-10-18T12:51:35Z",
   "note": "Only validated observations are listed. Missing currencies appear in source_errors. bias = direction of the policy rate over ~6 months (hawkish: +0.25 or more, dovish: -0.25 or less), not the tone of central bank statements.",
   "coverage": {
     "total_currencies": 8,
@@ -13,7 +13,7 @@
       "central_bank": "Federal Reserve",
       "indicator": "Fed funds target range (upper bound)",
       "value_percent": 4.0,
-      "observation_date": "2026-10-17",
+      "observation_date": "2026-10-18",
       "source_url": "https://www.federalreserve.gov/monetarypolicy.htm",
       "origin": "FRED / Board of Governors",
       "value_6m_ago": 3.75,
