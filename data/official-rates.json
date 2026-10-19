@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-19T00:59:42Z",
+  "generated_at_utc": "2026-10-19T07:06:49Z",
   "note": "Only validated observations are listed. Missing currencies appear in source_errors. bias = direction of the policy rate over ~6 months (hawkish: +0.25 or more, dovish: -0.25 or less), not the tone of central bank statements.",
   "coverage": {
     "total_currencies": 8,
-    "verified": 7,
-    "unavailable": 1
+    "verified": 8,
+    "unavailable": 0
   },
   "rates": [
     {
@@ -31,6 +31,18 @@
       "value_6m_ago": 2.0,
       "change_6m": 0.5,
       "bias": "hawkish"
+    },
+    {
+      "currency": "CAD",
+      "central_bank": "Bank of Canada",
+      "indicator": "Target for the overnight rate",
+      "value_percent": 2.25,
+      "observation_date": "2026-10-15",
+      "source_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/",
+      "origin": "Bank of Canada Valet API",
+      "value_6m_ago": 2.25,
+      "change_6m": 0.0,
+      "bias": "neutral"
     },
     {
       "currency": "GBP",
@@ -93,13 +105,5 @@
       "bias": "neutral"
     }
   ],
-  "source_errors": [
-    {
-      "currency": "CAD",
-      "central_bank": "Bank of Canada",
-      "source_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/",
-      "status": "unavailable",
-      "error": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>"
-    }
-  ]
+  "source_errors": []
 }
