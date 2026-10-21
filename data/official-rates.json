@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-21T01:00:55Z",
+  "generated_at_utc": "2026-10-21T07:02:34Z",
   "note": "Only validated observations are listed. Missing currencies appear in source_errors. bias = direction of the policy rate over ~6 months (hawkish: +0.25 or more, dovish: -0.25 or less), not the tone of central bank statements.",
   "coverage": {
     "total_currencies": 8,
@@ -28,10 +28,9 @@
       "observation_date": "2026-10-21",
       "source_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
       "origin": "ECB Data Portal",
-      "value_6m_ago": null,
-      "change_6m": null,
-      "bias": null,
-      "history_error": "HTTPError: HTTP Error 500: Internal Server Error"
+      "value_6m_ago": 2.0,
+      "change_6m": 0.5,
+      "bias": "hawkish"
     },
     {
       "currency": "CAD",
