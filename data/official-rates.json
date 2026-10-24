@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-23T18:55:57Z",
+  "generated_at_utc": "2026-10-24T01:05:28Z",
   "note": "Only validated observations are listed. Missing currencies appear in source_errors. bias = direction of the policy rate over ~6 months (hawkish: +0.25 or more, dovish: -0.25 or less), not the tone of central bank statements.",
   "coverage": {
     "total_currencies": 8,
@@ -25,7 +25,7 @@
       "central_bank": "European Central Bank",
       "indicator": "Deposit facility rate",
       "value_percent": 2.5,
-      "observation_date": "2026-10-23",
+      "observation_date": "2026-10-24",
       "source_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
       "origin": "ECB Data Portal",
       "value_6m_ago": 2.0,
@@ -88,9 +88,9 @@
       "observation_date": "2026-10-16",
       "source_url": "https://www.rbnz.govt.nz/monetary-policy/about-monetary-policy/the-official-cash-rate",
       "origin": "BIS central bank policy rates (secondary source)",
-      "value_6m_ago": null,
-      "change_6m": null,
-      "bias": null
+      "value_6m_ago": 2.25,
+      "change_6m": 0.5,
+      "bias": "hawkish"
     },
     {
       "currency": "CHF",
