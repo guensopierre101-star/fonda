@@ -115,7 +115,7 @@ def rba_latest():
 
 
 # ---- history (for the 6-month rate direction used as hawkish/dovish bias) ----
-HIST_DAYS = 400          # window fetched
+HIST_DAYS = 1500         # window fetched (BIS series are sparse: long window so a 6-month-old rate is always found)
 BIAS_DAYS = 180          # compare today's rate with the rate ~6 months ago
 BIAS_STEP = 0.25         # one standard policy step; smaller moves count as neutral
 

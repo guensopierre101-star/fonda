@@ -268,7 +268,13 @@ function filterRows(){const q=document.getElementById('filter').value.toLowerCas
     e.append(sm);
    }
   });
-  const tu=document.getElementById('toneUpdated');if(tu)tu.textContent='Tons mis à jour le '+(d.updated_utc||'?')+' · mise à jour sur demande';
+  const today=new Date().toISOString().slice(0,10);let stale=0;
+  all('.tonecell,.tone-tag').forEach(e=>{const x=B[e.dataset.ccy];if(!x||!x.next_meeting)return;
+   const isStale=today>x.next_meeting&&(x.statement_date||'')<x.next_meeting;if(isStale)stale++;
+   if(e.classList.contains('tone-tag')){const t=e.firstChild;if(t&&t.title)t.title+=' · Prochaine réunion : '+x.next_meeting;if(isStale){const w=document.createElement('span');w.className='tag yellow';w.textContent='⚠ ton à revérifier';w.title='Une réunion a eu lieu le '+x.next_meeting+' : le ton n\'a pas encore été remis à jour';e.append(' ',w);}}
+   else{const sm=e.querySelector('.smallmuted');if(sm){sm.append(' · '+(isStale?'⚠ à revérifier':'prochaine : '+x.next_meeting));}}});
+  const tu=document.getElementById('toneUpdated');if(tu){tu.textContent='Tons mis à jour le '+(d.updated_utc||'?')+' · mise à jour sur demande'+(stale?' · ⚠ '+stale+' ton(s) à revérifier après une réunion':'');}
+  const tb=document.getElementById('toneUpdateBtn');if(tb&&stale)tb.style.outline='2px solid var(--yellow,#d4a017)';
   all('.bank-links').forEach(el=>{
    const x=B[el.dataset.ccy];
    if(x&&x.source_url&&x.source_url.startsWith('https://')){

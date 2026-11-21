@@ -1,63 +1,80 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-10-13",
+  "updated_utc": "2026-11-21",
   "method": "Classement manuel (par Claude) à partir du dernier communiqué officiel de chaque banque : décision, vote, jugement sur l'inflation, risques et indications sur les taux futurs. C'est un jugement, pas une mesure automatique. À remettre à jour après chaque réunion.",
   "banks": {
     "USD": {
       "tone": "hawkish",
-      "statement_date": "2026-09-16",
-      "decision": "Hausse de 0,25 pt à 3,75–4,00 %, vote 12–0",
-      "summary": "La Fed dit que l'inflation reste élevée et que la hausse doit la ramener plus vite à 2 %. Croissance solide, emploi stable. Pas d'indication explicite sur la suite.",
-      "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+      "statement_date": "2026-10-28",
+      "decision": "Fourchette maintenue à 3,75–4,00 % (vote 10–2 : Cook et Hammack voulaient une hausse de 0,25 pt)",
+      "summary": "Le FOMC dit que l'inflation reste élevée et qu'il rassemblera plus d'informations avant de fixer sa position, pour un retour rapide à 2 %. Activité forte, emploi stable, incertitude élevée (géopolitique). Pas d'indication explicite sur la suite, mais deux membres voulaient déjà resserrer.",
+      "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm",
+      "next_meeting": "2026-12-09",
+      "next_meeting_source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
     },
     "GBP": {
       "tone": "hawkish",
-      "statement_date": "2026-09-17",
-      "decision": "Taux maintenu à 3,75 %, vote 6–3 (3 voulaient une hausse)",
-      "summary": "La BoE voit les risques sur l'inflation orientés à la hausse (énergie, Moyen-Orient), prévoit une inflation autour de 3¾ % fin 2026 et se dit prête à agir. Trois membres voulaient déjà monter les taux.",
-      "source_url": "https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/september-2026"
+      "statement_date": "2026-11-05",
+      "decision": "Hausse de 0,25 pt : Bank Rate à 4,00 % (vote 8–1 : Catherine Mann voulait +0,50 pt)",
+      "summary": "Inflation de 3,5 % en septembre, attendue vers 5 % mi-2027 (énergie). Le risque d'effets de second tour a augmenté et les risques sur l'inflation sont orientés à la hausse. Pas de trajectoire prédéfinie : plusieurs membres voient une nouvelle hausse possible ou probable, un autre dit que ce n'est pas le début d'un cycle de hausses.",
+      "source_url": "https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/november-2026",
+      "next_meeting": "2026-12-17",
+      "next_meeting_source": "https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates"
     },
     "JPY": {
       "tone": "hawkish",
-      "statement_date": "2026-09-18",
-      "decision": "Taux porté à 1,25 %, vote 7–2 (2 voulaient attendre)",
-      "summary": "La BoJ dit qu'elle continuera à relever son taux selon l'évolution de l'économie et des prix, car l'inflation sous-jacente approche 2 % et pourrait dépasser la cible. Deux membres trouvaient la hausse prématurée.",
-      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260918a.pdf"
+      "statement_date": "2026-10-30",
+      "decision": "Taux maintenu à 1,25 % (vote 8–1 selon Newsquawk, source tierce)",
+      "summary": "La BOJ juge l'inflation sous-jacente à peu près compatible avec l'objectif de 2 % et l'inflation globale nettement au-dessus de 2 % pour l'instant (puces liées à l'IA, yen faible, pétrole). Elle répète qu'elle continuera de relever son taux directeur selon l'activité, les prix et les conditions financières. Texte lu dans la synthèse officielle du rapport de perspectives (la déclaration PDF n'a pas pu être ouverte).",
+      "source_url": "https://www.boj.or.jp/en/mopo/outlook/highlight/ten202610.htm",
+      "next_meeting": "2026-12-18",
+      "next_meeting_source": "https://www.boj.or.jp/en/mopo/mpmsche_minu/index.htm"
     },
     "NZD": {
       "tone": "hawkish",
-      "statement_date": "2026-09-02",
-      "decision": "OCR relevé de 0,25 pt à 2,75 %, unanime",
-      "summary": "La RBNZ juge approprié de retirer progressivement le soutien monétaire et dit que l'OCR pourrait devoir monter encore, tout en notant des risques importants à la baisse pour l'activité.",
-      "source_url": "https://www.rbnz.govt.nz/news-and-events/news/2026/09/ocr-increased-by-25-basis-points-to-2-75"
+      "statement_date": "2026-10-28",
+      "decision": "OCR maintenu à 2,75 % (vote 4–3 : trois membres voulaient 3,00 %)",
+      "summary": "Inflation de 3,7 % au T3, attendue à 4,4 % au T4 (carburant). Le comité juge qu'un resserrement sera probablement nécessaire, selon les perspectives ; prochaine décision en décembre ; une baisse n'est envisagée qu'en cas de net recul de l'économie mondiale. Texte lu via une reproduction du communiqué (ActionForex), la page officielle de la RBNZ étant inaccessible.",
+      "source_url": "https://www.rbnz.govt.nz/news-and-events/news/2026/10/ocr-held-at-2-75-percent",
+      "next_meeting": "2026-12-09",
+      "next_meeting_source": "https://www.rbnz.govt.nz/news-and-events/how-we-release-information/ocr-decision-dates-and-financial-stability-report-dates-to-feb-2028"
     },
     "CAD": {
-      "tone": "neutral",
-      "statement_date": "2026-09-02",
-      "decision": "Taux maintenu à 2,25 %",
-      "summary": "La BoC voit une reprise de l'économie mais encore de la marge de capacité inutilisée, une inflation tirée surtout par l'essence et des risques des deux côtés (énergie, droits de douane). Aucune trajectoire annoncée.",
-      "source_url": "https://www.bankofcanada.ca/2026/09/fad-press-release-2026-09-02/"
+      "tone": "hawkish",
+      "statement_date": "2026-10-28",
+      "decision": "Hausse de 0,25 pt : taux cible à 2,50 % (taux de la Banque 2,75 %)",
+      "summary": "L'inflation est plus forte et plus durable que prévu en juillet (près de 3 %, vers 3,5 % d'ici fin d'année). La Banque dit que d'autres hausses pourraient être nécessaires mais qu'elle avancera avec prudence. Risques : conflit au Moyen-Orient et énergie, relations commerciales avec les États-Unis.",
+      "source_url": "https://www.bankofcanada.ca/2026/10/fad-press-release-2026-10-28/",
+      "next_meeting": "2026-12-09",
+      "next_meeting_source": "https://www.bankofcanada.ca/2026/10/fad-press-release-2026-10-28/"
     },
     "CHF": {
       "tone": "neutral",
       "statement_date": "2026-09-24",
       "decision": "Taux maintenu à 0 %",
       "summary": "La BNS juge sa politique adaptée : inflation prévue dans la zone de stabilité des prix (0,7–0,8 %), franc plus faible qui soutient l'économie, intervention sur le change possible. Aucune indication sur les taux.",
-      "source_url": "https://www.snb.ch/en/publications/communication/press-releases-restricted/pre_20260924"
+      "source_url": "https://www.snb.ch/en/publications/communication/press-releases-restricted/pre_20260924",
+      "next_meeting": "2026-12-10",
+      "next_meeting_source": "https://www.snb.ch/en/services-events/digital-services/event-schedule"
     },
     "EUR": {
-      "tone": "hawkish",
-      "statement_date": "2026-09-10",
-      "decision": "Hausse de 0,25 pt : taux de dépôt à 2,50 % (en vigueur le 16 septembre)",
-      "summary": "La BCE dit que le conflit au Moyen-Orient maintient la pression sur les prix et que l'inflation restera nettement au-dessus de la cible pendant une période prolongée (3,0 % prévu en 2026). Risques à la hausse pour l'inflation, à la baisse pour la croissance. Elle décide réunion par réunion, sans s'engager sur une trajectoire de taux.",
-      "source_url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260910~314e508016.en.html"
+      "tone": "neutral",
+      "statement_date": "2026-10-29",
+      "decision": "Taux inchangés : taux de dépôt 2,50 % (refinancement 2,65 %, prêt marginal 2,90 %)",
+      "summary": "La BCE voit un choc énergétique qui pousse l'inflation à la hausse et pèse sur la croissance ; l'inflation sous-jacente est stable et les salaires ne réagissent pas encore. Elle se dit bien positionnée, décide réunion par réunion et ne s'engage sur aucune trajectoire de taux. Le communiqué ne précise pas s'il y a eu unanimité.",
+      "source_url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html",
+      "next_meeting": "2026-12-17",
+      "next_meeting_source": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
     },
     "AUD": {
       "tone": "hawkish",
-      "statement_date": "2026-09-29",
-      "decision": "Hausse de 0,25 pt à 4,60 % (conférence de presse de la gouverneure ; la hausse a été préférée au maintien)",
-      "summary": "La RBA dit que la hausse est nécessaire pour ramener l'inflation à la cible, la demande intérieure dépassant l'offre. Pression des prix liée au Moyen-Orient et à l'investissement dans l'IA ; les entreprises s'attendent encore à de fortes hausses de coûts. Pas d'indication explicite sur la suite, mais la gouverneure dit que le Conseil relèvera encore les taux si nécessaire.",
-      "source_url": "https://www.rba.gov.au/speeches/2026/mc-gov-2026-09-29.html"
+      "statement_date": "2026-11-03",
+      "decision": "Hausse de 0,25 pt à 4,85 % (vote 6–3 : trois membres voulaient maintenir 4,60 %)",
+      "summary": "Inflation toujours élevée et large, attendue au-dessus de 3 % l'an prochain, avec un risque d'ancrage des attentes. L'économie ralentit (logement en baisse, chômage en hausse). Pas de trajectoire fixe : le Conseil fera le nécessaire pour ramener l'inflation à la cible et reste guidé par les données.",
+      "source_url": "https://www.rba.gov.au/media-releases/2026/mr-26-30.html",
+      "next_meeting": "2026-12-08",
+      "next_meeting_source": "https://www.rba.gov.au/schedules-events/board-meeting-schedules.html"
     }
-  }
+  },
+  "next_meeting_note": "Dates de décision tirées des calendriers officiels (RBA : 2e jour de la réunion, déduit). Après chaque mise à jour du ton, remplacer next_meeting par la réunion suivante."
 }
