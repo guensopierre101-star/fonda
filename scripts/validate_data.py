@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent.parent
 TODAY = datetime.now(timezone.utc).date()
 
 
-def load(path):
+def load(path, max_age_hours=24):
     with (ROOT / path).open(encoding="utf-8") as f:
         data = json.load(f)
     if not isinstance(data, dict) or data.get("schema_version") != 1:
@@ -17,8 +17,8 @@ def load(path):
     generated = datetime.fromisoformat(data["generated_at_utc"].replace("Z", "+00:00"))
     if generated.tzinfo is None:
         raise ValueError(f"{path}: generated_at_utc must include timezone")
-    if (datetime.now(timezone.utc) - generated).total_seconds() > 24 * 3600:
-        raise ValueError(f"{path}: generated_at_utc is over 24 hours old")
+    if (datetime.now(timezone.utc) - generated).total_seconds() > max_age_hours * 3600:
+        raise ValueError(f"{path}: generated_at_utc is over {max_age_hours} hours old")
     return data
 
 
@@ -79,7 +79,7 @@ def check_cot():
 
 
 def check_macro():
-    d = load("data/macro.json")
+    d = load("data/macro.json", max_age_hours=200 * 24)  # IMF WEO changes twice a year
     n, total = coverage(d, "areas", 6, "macro data")
     year = int(d["year"])
     if year not in {TODAY.year, TODAY.year - 1}:

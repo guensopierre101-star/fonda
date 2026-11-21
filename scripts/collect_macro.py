@@ -17,12 +17,6 @@ from datetime import datetime, timezone
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "macro.json")
 UA = {"User-Agent": "fonda-fx-desk/1.0 (+https://github.com/guensopierre101-star/fonda)"}
-# The IMF site rejects unfamiliar bot user-agents; identify as a normal client and say who we are.
-IMF_HEADERS = {
-    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 fonda-fx-desk/1.0",
-    "Accept": "application/json, text/plain, */*",
-    "Accept-Language": "en-US,en;q=0.9",
-}
 BASE_V2 = "https://www.imf.org/external/datamapper/api/v2/"
 BASE_V1 = "https://www.imf.org/external/datamapper/api/v1/"
 
@@ -41,7 +35,7 @@ def get_indicator(code):
             if wait:
                 time.sleep(wait)
             try:
-                req = urllib.request.Request(url, headers=IMF_HEADERS)
+                req = urllib.request.Request(url, headers=UA)
                 with urllib.request.urlopen(req, timeout=60) as r:
                     payload = json.loads(r.read().decode("utf-8"))
                 values = payload.get("values", payload)
@@ -98,6 +92,12 @@ def main():
         except Exception as e:  # noqa: BLE001
             errors.append({"currency": ccy, "status": "unavailable",
                            "error": f"{type(e).__name__}: {e}"})
+    if not areas:
+        # Do not replace the last good file with an empty one (IMF updates twice a year, so it stays valid).
+        print("::warning::IMF data could not be refreshed (the IMF site is refusing requests); keeping the last published data/macro.json")
+        for e in errors + [{"currency": "-", "error": x} for x in fetch_errors]:
+            print(f"  {e['currency']}: {e['error']}", file=sys.stderr)
+        return
     out = {
         "schema_version": 1,
         "generated_at_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
