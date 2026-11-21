@@ -237,7 +237,10 @@ def main():
             }
             try:  # history is optional: if it fails the rate is still published, bias stays null
                 target = (now.date() - timedelta(days=BIAS_DAYS)).isoformat()
-                past = value_at(HISTORY[ccy](), target)
+                pts = HISTORY[ccy]()
+                past = value_at(pts, target)
+                if past is None:
+                    entry["history_error"] = f"no observation on or before {target}; series has {len(pts)} points" + (f" from {pts[0][0]}" if pts else "")
                 if past is not None and -1.0 <= past <= 25.0:
                     entry["value_6m_ago"] = past
                     entry["change_6m"] = round(value - past, 4)
