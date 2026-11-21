@@ -245,6 +245,8 @@ def main():
                     entry["value_6m_ago"] = past
                     entry["change_6m"] = round(value - past, 4)
                     entry["bias"] = bias_from_change(entry["change_6m"])
+                elif past is not None:
+                    entry["history_error"] = f"implausible past value {past}"
             except Exception as e:  # noqa: BLE001
                 entry["history_error"] = f"{type(e).__name__}: {e}"
             rates.append(entry)
