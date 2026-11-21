@@ -17,21 +17,34 @@ jobs:
         with:
           python-version: "3.12"
       - name: Collect official rates
+        continue-on-error: true
         run: python scripts/collect_rates.py
       - name: Collect COT positioning
+        continue-on-error: true
         run: python scripts/collect_cot.py
       - name: Collect inflation and growth
+        continue-on-error: true
         run: python scripts/collect_macro.py
-      - name: Validate collected data before publishing
-        run: python scripts/validate_data.py
-      - name: Commit changes
+      - name: Validate and publish each dataset independently
         run: |
           git config user.name "fonda-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/official-rates.json data/cot.json data/macro.json
+          status=0
+          for pair in rates:official-rates cot:cot macro:macro; do
+            check=${pair%%:*}
+            file=data/${pair##*:}.json
+            if python scripts/validate_data.py "$check"; then
+              git add "$file"
+            else
+              echo "::warning::$check failed validation; keeping the last published $file"
+              git checkout -- "$file"
+              status=1
+            fi
+          done
           if git diff --cached --quiet; then
             echo "No changes"
           else
             git commit -m "Update official data"
             git push
           fi
+          exit $status

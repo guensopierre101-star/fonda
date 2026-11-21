@@ -23,9 +23,18 @@ INDICATORS = {"inflation": "PCPIPCH", "gdp_growth": "NGDP_RPCH"}
 
 
 def get_indicator(code):
-    req = urllib.request.Request(f"{BASE}{code}", headers=UA)
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return json.loads(r.read().decode("utf-8"))["values"][code]
+    """Try the explicit country-list form first (the all-countries form started returning 404)."""
+    countries = "/".join(AREAS.values())
+    last = None
+    for url in (f"{BASE}{code}/{countries}", f"{BASE}{code}"):
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return json.loads(r.read().decode("utf-8"))["values"][code]
+        except Exception as e:  # noqa: BLE001
+            last = e
+            print(f"  IMF request failed for {url}: {type(e).__name__}: {e}", file=sys.stderr)
+    raise last
 
 
 def main():

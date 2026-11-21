@@ -126,12 +126,22 @@ def check_tone():
     print(f"PASS Tone: {len(banks)} currencies; manual review age {(TODAY - updated).days} days")
 
 
+CHECKS = {"rates": ("Rates", check_rates), "cot": ("COT", check_cot),
+          "macro": ("Macro", check_macro), "tone": ("Tone", check_tone)}
+
+
 def main():
+    """Usage: validate_data.py [rates|cot|macro|tone ...]  (no argument = all checks)."""
+    names = sys.argv[1:] or list(CHECKS)
     try:
-        results = [("Rates", check_rates()), ("COT", check_cot()), ("Macro", check_macro())]
-        for label, (n, total) in results:
-            print(f"PASS {label}: {n} valid entries" + (f" / {total}" if total else ""))
-        check_tone()
+        for name in names:
+            if name not in CHECKS:
+                raise ValueError(f"unknown check '{name}'; choose from {', '.join(CHECKS)}")
+            label, fn = CHECKS[name]
+            result = fn()
+            if result:
+                n, total = result
+                print(f"PASS {label}: {n} valid entries" + (f" / {total}" if total else ""))
     except Exception as e:
         print(f"DATA VALIDATION FAILED: {e}", file=sys.stderr)
         raise SystemExit(1)
