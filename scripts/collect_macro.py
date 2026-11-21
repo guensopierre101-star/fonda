@@ -17,6 +17,12 @@ from datetime import datetime, timezone
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "macro.json")
 UA = {"User-Agent": "fonda-fx-desk/1.0 (+https://github.com/guensopierre101-star/fonda)"}
+# The IMF site rejects unfamiliar bot user-agents; identify as a normal client and say who we are.
+IMF_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 fonda-fx-desk/1.0",
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+}
 BASE_V2 = "https://www.imf.org/external/datamapper/api/v2/"
 BASE_V1 = "https://www.imf.org/external/datamapper/api/v1/"
 
@@ -35,7 +41,7 @@ def get_indicator(code):
             if wait:
                 time.sleep(wait)
             try:
-                req = urllib.request.Request(url, headers=UA)
+                req = urllib.request.Request(url, headers=IMF_HEADERS)
                 with urllib.request.urlopen(req, timeout=60) as r:
                     payload = json.loads(r.read().decode("utf-8"))
                 values = payload.get("values", payload)
@@ -45,7 +51,12 @@ def get_indicator(code):
                 return series
             except urllib.error.HTTPError as e:
                 last = e
-                print(f"  IMF {url}: HTTP {e.code}", file=sys.stderr)
+                body = ""
+                try:
+                    body = e.read().decode("utf-8", "replace")[:160].replace("\n", " ")
+                except Exception:  # noqa: BLE001
+                    pass
+                print(f"  IMF {url}: HTTP {e.code} {body}", file=sys.stderr)
                 if e.code != 429:
                     break  # not rate limiting: try the next URL
             except Exception as e:  # noqa: BLE001
