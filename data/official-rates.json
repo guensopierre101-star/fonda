@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-11-21T02:58:27Z",
+  "generated_at_utc": "2026-11-21T03:00:47Z",
   "note": "Only validated observations are listed. Missing currencies appear in source_errors. bias = direction of the policy rate over ~6 months (hawkish: +0.25 or more, dovish: -0.25 or less), not the tone of central bank statements.",
   "coverage": {
     "total_currencies": 8,
@@ -54,7 +54,8 @@
       "origin": "BIS central bank policy rates (secondary source)",
       "value_6m_ago": null,
       "change_6m": null,
-      "bias": null
+      "bias": null,
+      "history_error": "implausible past value nan"
     },
     {
       "currency": "JPY",
