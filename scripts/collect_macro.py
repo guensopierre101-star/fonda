@@ -10,12 +10,15 @@ labelled as such. Writes data/macro.json. Missing data is reported, never invent
 import json
 import os
 import sys
+import time
+import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "macro.json")
 UA = {"User-Agent": "fonda-fx-desk/1.0 (+https://github.com/guensopierre101-star/fonda)"}
-BASE = "https://www.imf.org/external/datamapper/api/v1/"
+BASE_V2 = "https://www.imf.org/external/datamapper/api/v2/"
+BASE_V1 = "https://www.imf.org/external/datamapper/api/v1/"
 
 AREAS = {"USD": "USA", "EUR": "EURO", "GBP": "GBR", "JPY": "JPN",
          "CAD": "CAN", "AUD": "AUS", "NZD": "NZL", "CHF": "CHE"}
@@ -23,17 +26,32 @@ INDICATORS = {"inflation": "PCPIPCH", "gdp_growth": "NGDP_RPCH"}
 
 
 def get_indicator(code):
-    """Try the explicit country-list form first (the all-countries form started returning 404)."""
+    """IMF DataMapper: v2 is current (v1 now returns 404). Retry on 429 and tolerate small format changes."""
     countries = "/".join(AREAS.values())
+    urls = [f"{BASE_V2}{code}/{countries}", f"{BASE_V1}{code}/{countries}", f"{BASE_V2}{code}"]
     last = None
-    for url in (f"{BASE}{code}/{countries}", f"{BASE}{code}"):
-        try:
-            req = urllib.request.Request(url, headers=UA)
-            with urllib.request.urlopen(req, timeout=60) as r:
-                return json.loads(r.read().decode("utf-8"))["values"][code]
-        except Exception as e:  # noqa: BLE001
-            last = e
-            print(f"  IMF request failed for {url}: {type(e).__name__}: {e}", file=sys.stderr)
+    for url in urls:
+        for wait in (0, 6, 20):
+            if wait:
+                time.sleep(wait)
+            try:
+                req = urllib.request.Request(url, headers=UA)
+                with urllib.request.urlopen(req, timeout=60) as r:
+                    payload = json.loads(r.read().decode("utf-8"))
+                values = payload.get("values", payload)
+                series = values.get(code, values)
+                if not isinstance(series, dict) or not any(k in series for k in AREAS.values()):
+                    raise ValueError("unexpected response shape: " + json.dumps(payload)[:300])
+                return series
+            except urllib.error.HTTPError as e:
+                last = e
+                print(f"  IMF {url}: HTTP {e.code}", file=sys.stderr)
+                if e.code != 429:
+                    break  # not rate limiting: try the next URL
+            except Exception as e:  # noqa: BLE001
+                last = e
+                print(f"  IMF {url}: {type(e).__name__}: {e}", file=sys.stderr)
+                break
     raise last
 
 
