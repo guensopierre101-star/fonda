@@ -160,8 +160,13 @@ def bis_hist(area):
         url = ("https://stats.bis.org/api/v2/data/dataflow/BIS/WS_CBPOL/1.0/"
                f"D.GB+JP+AU+NZ+CH?startPeriod={start_date()}&format=csv")
         for row in csv.DictReader(io.StringIO(get(url))):
-            _BIS_H.setdefault(row["REF_AREA"], []).append(
-                (row["TIME_PERIOD"][:10], float(row["OBS_VALUE"])))
+            try:
+                val = float(row["OBS_VALUE"])
+            except ValueError:
+                continue
+            if val != val:  # BIS marks gaps as NaN
+                continue
+            _BIS_H.setdefault(row["REF_AREA"], []).append((row["TIME_PERIOD"][:10], val))
         for k in _BIS_H:
             _BIS_H[k].sort()
     if area not in _BIS_H:
