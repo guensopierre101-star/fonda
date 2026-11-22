@@ -25,12 +25,15 @@ jobs:
       - name: Collect inflation and growth
         continue-on-error: true
         run: python scripts/collect_macro.py
+      - name: Collect price momentum
+        continue-on-error: true
+        run: python scripts/collect_momentum.py
       - name: Validate and publish each dataset independently
         run: |
           git config user.name "fonda-data-bot"
           git config user.email "actions@users.noreply.github.com"
           status=0
-          for pair in rates:official-rates cot:cot macro:macro; do
+          for pair in rates:official-rates cot:cot macro:macro momentum:momentum; do
             check=${pair%%:*}
             file=data/${pair##*:}.json
             if python scripts/validate_data.py "$check"; then

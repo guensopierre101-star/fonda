@@ -126,7 +126,25 @@ def check_tone():
     print(f"PASS Tone: {len(banks)} currencies; manual review age {(TODAY - updated).days} days")
 
 
-CHECKS = {"rates": ("Rates", check_rates), "cot": ("COT", check_cot),
+def check_momentum():
+    d = load("data/momentum.json")
+    items = d.get("items", [])
+    if len(items) < 7:
+        raise ValueError(f"momentum: only {len(items)} currencies")
+    seen = set()
+    for x in items:
+        c = x["currency"]
+        if c in seen:
+            raise ValueError(f"momentum: duplicate {c}")
+        seen.add(c)
+        if abs(float(x["momentum"])) > 25:
+            raise ValueError(f"momentum: implausible value for {c}")
+    if (TODAY - date.fromisoformat(d["to_date"][:10])).days > 10:
+        raise ValueError("momentum: latest ECB rate is over 10 days old")
+    return len(items), 8
+
+
+CHECKS = {"momentum": ("Momentum", check_momentum), "rates": ("Rates", check_rates), "cot": ("COT", check_cot),
           "macro": ("Macro", check_macro), "tone": ("Tone", check_tone)}
 
 
