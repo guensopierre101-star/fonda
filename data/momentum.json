@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-22T01:08:23Z",
+  "source": "ECB euro foreign exchange reference rates (daily)",
+  "lookback_observations": 20,
+  "from_date": "2026-10-23",
+  "to_date": "2026-11-20",
+  "coverage": {
+    "total": 8,
+    "verified": 8,
+    "unavailable": 0
+  },
+  "items": [
+    {
+      "currency": "EUR",
+      "change_pct_vs_eur": 0.0,
+      "momentum": 0.322
+    },
+    {
+      "currency": "USD",
+      "change_pct_vs_eur": 1.847,
+      "momentum": 2.169
+    },
+    {
+      "currency": "GBP",
+      "change_pct_vs_eur": -0.008,
+      "momentum": 0.314
+    },
+    {
+      "currency": "JPY",
+      "change_pct_vs_eur": 0.665,
+      "momentum": 0.988
+    },
+    {
+      "currency": "CAD",
+      "change_pct_vs_eur": -0.369,
+      "momentum": -0.047
+    },
+    {
+      "currency": "AUD",
+      "change_pct_vs_eur": -3.324,
+      "momentum": -3.002
+    },
+    {
+      "currency": "NZD",
+      "change_pct_vs_eur": -1.432,
+      "momentum": -1.11
+    },
+    {
+      "currency": "CHF",
+      "change_pct_vs_eur": 0.043,
+      "momentum": 0.366
+    }
+  ],
+  "errors": []
+}
