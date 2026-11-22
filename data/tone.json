@@ -7,7 +7,7 @@
       "tone": "hawkish",
       "statement_date": "2026-10-28",
       "decision": "Fourchette maintenue à 3,75–4,00 % (vote 10–2 : Cook et Hammack voulaient une hausse de 0,25 pt)",
-      "summary": "Le FOMC dit que l'inflation reste élevée et qu'il rassemblera plus d'informations avant de fixer sa position, pour un retour rapide à 2 %. Activité forte, emploi stable, incertitude élevée (géopolitique). Pas d'indication explicite sur la suite, mais deux membres voulaient déjà resserrer.",
+      "summary": "Le FOMC dit que l'inflation reste élevée et qu'il rassemblera plus d'informations avant de fixer sa position, pour un retour rapide à 2 %. Activité forte, emploi stable, incertitude élevée (géopolitique). Pas d'indication explicite sur la suite, mais deux membres voulaient déjà resserrer. Mise à jour 21 nov. : le procès-verbal (18 nov.) montre un soutien quasi unanime à de nouvelles hausses ; Waller parle d'action « agressive », Cook dit la politique pas assez restrictive. Hausse de 25 pb attendue le 9 déc.",
       "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm",
       "next_meeting": "2026-12-09",
       "next_meeting_source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
@@ -25,7 +25,7 @@
       "tone": "hawkish",
       "statement_date": "2026-10-30",
       "decision": "Taux maintenu à 1,25 % (vote 8–1 selon Newsquawk, source tierce)",
-      "summary": "La BOJ juge l'inflation sous-jacente à peu près compatible avec l'objectif de 2 % et l'inflation globale nettement au-dessus de 2 % pour l'instant (puces liées à l'IA, yen faible, pétrole). Elle répète qu'elle continuera de relever son taux directeur selon l'activité, les prix et les conditions financières. Texte lu dans la synthèse officielle du rapport de perspectives (la déclaration PDF n'a pas pu être ouverte).",
+      "summary": "La BOJ juge l'inflation sous-jacente à peu près compatible avec l'objectif de 2 % et l'inflation globale nettement au-dessus de 2 % pour l'instant (puces liées à l'IA, yen faible, pétrole). Elle répète qu'elle continuera de relever son taux directeur selon l'activité, les prix et les conditions financières. Texte lu dans la synthèse officielle du rapport de perspectives (la déclaration PDF n'a pas pu être ouverte). Mise à jour 21 nov. : le gouverneur Ueda a dit le 19 nov. que la BOJ continuera de relever ses taux (risque de dépassement de l'inflation avec le yen faible et le pétrole).",
       "source_url": "https://www.boj.or.jp/en/mopo/outlook/highlight/ten202610.htm",
       "next_meeting": "2026-12-18",
       "next_meeting_source": "https://www.boj.or.jp/en/mopo/mpmsche_minu/index.htm"
@@ -52,16 +52,16 @@
       "tone": "neutral",
       "statement_date": "2026-09-24",
       "decision": "Taux maintenu à 0 %",
-      "summary": "La BNS juge sa politique adaptée : inflation prévue dans la zone de stabilité des prix (0,7–0,8 %), franc plus faible qui soutient l'économie, intervention sur le change possible. Aucune indication sur les taux.",
+      "summary": "La BNS juge sa politique adaptée : inflation prévue dans la zone de stabilité des prix (0,7–0,8 %), franc plus faible qui soutient l'économie, intervention sur le change possible. Aucune indication sur les taux. Revérifié le 21 nov. d'après le résumé des discussions : taux 0 % maintenu sans dissidence ; inflation 0,8 % en août, restant dans la plage de stabilité des prix ; pas d'effets de second tour ; politique « expansionniste » mais conditions jugées appropriées ; aucune indication de hausse ni de baisse. Ton neutre confirmé.",
       "source_url": "https://www.snb.ch/en/publications/communication/press-releases-restricted/pre_20260924",
       "next_meeting": "2026-12-10",
       "next_meeting_source": "https://www.snb.ch/en/services-events/digital-services/event-schedule"
     },
     "EUR": {
-      "tone": "neutral",
+      "tone": "hawkish",
       "statement_date": "2026-10-29",
       "decision": "Taux inchangés : taux de dépôt 2,50 % (refinancement 2,65 %, prêt marginal 2,90 %)",
-      "summary": "La BCE voit un choc énergétique qui pousse l'inflation à la hausse et pèse sur la croissance ; l'inflation sous-jacente est stable et les salaires ne réagissent pas encore. Elle se dit bien positionnée, décide réunion par réunion et ne s'engage sur aucune trajectoire de taux. Le communiqué ne précise pas s'il y a eu unanimité.",
+      "summary": "La BCE voit un choc énergétique qui pousse l'inflation à la hausse et pèse sur la croissance ; l'inflation sous-jacente est stable et les salaires ne réagissent pas encore. Elle se dit bien positionnée, décide réunion par réunion et ne s'engage sur aucune trajectoire de taux. Le communiqué ne précise pas s'il y a eu unanimité. Mise à jour 21 nov. : le communiqué du 29 oct. reste neutre, mais Joachim Nagel (Bundesbank, membre du Conseil) dit qu'une hausse en décembre est très probablement nécessaire, et des médias rapportent que plusieurs responsables sont prêts à relever les taux. Ton passé à hawkish d'après ces signaux, pas d'après un communiqué officiel.",
       "source_url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html",
       "next_meeting": "2026-12-17",
       "next_meeting_source": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
