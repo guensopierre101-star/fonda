@@ -67,10 +67,10 @@
       "next_meeting_source": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
     },
     "AUD": {
-      "tone": "hawkish",
+      "tone": "neutral",
       "statement_date": "2026-11-03",
       "decision": "Hausse de 0,25 pt à 4,85 % (vote 6–3 : trois membres voulaient maintenir 4,60 %)",
-      "summary": "Inflation toujours élevée et large, attendue au-dessus de 3 % l'an prochain, avec un risque d'ancrage des attentes. L'économie ralentit (logement en baisse, chômage en hausse). Pas de trajectoire fixe : le Conseil fera le nécessaire pour ramener l'inflation à la cible et reste guidé par les données.",
+      "summary": "Inflation toujours élevée et large, attendue au-dessus de 3 % l'an prochain, avec un risque d'ancrage des attentes. L'économie ralentit (logement en baisse, chômage en hausse). Pas de trajectoire fixe : le Conseil fera le nécessaire pour ramener l'inflation à la cible et reste guidé par les données. Révision 21 nov. : malgré la hausse, le communiqué a retiré la phrase disant que la RBA était prête à relever encore le taux si nécessaire et le vote était divisé 6–3 ; le marché y voit une fin de cycle. Chômage à 4,9 % (plus haut en 5 ans), 43,5 k emplois perdus en octobre. Ton revu de hawkish à neutre.",
       "source_url": "https://www.rba.gov.au/media-releases/2026/mr-26-30.html",
       "next_meeting": "2026-12-08",
       "next_meeting_source": "https://www.rba.gov.au/schedules-events/board-meeting-schedules.html"
