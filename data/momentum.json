@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-11-27T08:41:43Z",
+  "generated_at_utc": "2026-11-27T21:22:29Z",
   "source": "ECB euro foreign exchange reference rates (daily)",
   "lookback_observations": 20,
-  "from_date": "2026-10-29",
-  "to_date": "2026-11-26",
+  "from_date": "2026-10-30",
+  "to_date": "2026-11-27",
   "coverage": {
     "total": 8,
     "verified": 8,
@@ -14,42 +14,42 @@
     {
       "currency": "EUR",
       "change_pct_vs_eur": 0.0,
-      "momentum": 0.369
+      "momentum": 0.168
     },
     {
       "currency": "USD",
-      "change_pct_vs_eur": 1.412,
-      "momentum": 1.781
+      "change_pct_vs_eur": 1.962,
+      "momentum": 2.13
     },
     {
       "currency": "GBP",
-      "change_pct_vs_eur": -0.211,
-      "momentum": 0.158
+      "change_pct_vs_eur": -0.148,
+      "momentum": 0.019
     },
     {
       "currency": "JPY",
-      "change_pct_vs_eur": 0.646,
-      "momentum": 1.016
+      "change_pct_vs_eur": 0.498,
+      "momentum": 0.665
     },
     {
       "currency": "CAD",
-      "change_pct_vs_eur": -0.256,
-      "momentum": 0.113
+      "change_pct_vs_eur": -0.013,
+      "momentum": 0.155
     },
     {
       "currency": "AUD",
-      "change_pct_vs_eur": -4.22,
-      "momentum": -3.851
+      "change_pct_vs_eur": -3.207,
+      "momentum": -3.04
     },
     {
       "currency": "NZD",
-      "change_pct_vs_eur": -1.078,
-      "momentum": -0.709
+      "change_pct_vs_eur": -0.835,
+      "momentum": -0.668
     },
     {
       "currency": "CHF",
-      "change_pct_vs_eur": 0.754,
-      "momentum": 1.123
+      "change_pct_vs_eur": 0.404,
+      "momentum": 0.572
     }
   ],
   "errors": []
