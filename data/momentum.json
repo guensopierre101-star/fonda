@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-11-27T21:22:29Z",
+  "generated_at_utc": "2026-11-28T07:55:48Z",
   "source": "ECB euro foreign exchange reference rates (daily)",
   "lookback_observations": 20,
   "from_date": "2026-10-30",
